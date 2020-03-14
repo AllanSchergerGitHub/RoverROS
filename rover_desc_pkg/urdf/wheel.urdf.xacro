@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <robot name="wheel" xmlns:xacro="http://www.ros.org/wiki/xacro">
     <!-- Wheels -->
-    <xacro:property name="wheel_radius" value="0.18"/>
-    <xacro:property name="wheel_height" value="0.12"/>
+    <xacro:property name="wheel_radius" value="0.178"/>
+    <xacro:property name="wheel_height" value="0.114"/>
     <xacro:property name="wheel_mass" value="1.0"/> <!-- in Kg -->
 
     <xacro:property name="base_x_origin_to_wheel_origin" value="0.25"/>
