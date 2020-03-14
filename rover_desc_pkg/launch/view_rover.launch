@@ -1,0 +1,13 @@
+<launch>
+    <arg name="model"/>
+
+    <!-- Parsing xacro and setting wheel description parameter -->
+    <param name="robot_description" command="$(find xacro)/xacro $(find rover_desc_pkg)/urdf/rover_robot.xacro"/>
+
+    <!-- Setting gui parameter to true to display joint slider -->
+    <param name="use_gui" value="true"/>
+
+    <!-- Launch visualization in rviz -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find rover_desc_pkg)/urdf.rviz" required="true"/>
+
+</launch>
