@@ -1,95 +1,46 @@
 <?xml version="1.0"?>
 <robot name="rover_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
-    <xacro:include filename="$(find rover_desc_pkg)/urdf/wheel.urdf.xacro"/>
+    <!-- Begin - Include -->
+    <xacro:include filename="$(find rover_desc_pkg)/urdf/robot_parameters.xacro"/>
+    <xacro:include filename="$(find rover_desc_pkg)/urdf/links_joints.xacro"/>
+    <!-- End - Include -->
 
-    <!-- Defining the colors used in the robot -->
-    <material name="Black">
-        <color rgba="${0.0/255} ${0.0/255} ${0.0/255} ${255/255}"/>
-    </material>
+    <!-- Begin - Robot Description -->
+    <!-- Chassis footprint -->
+    <m_link_box name="${r_link_00_name}"
+                color="White"
+                origin_rpy="0 0 0" origin_xyz="0 0 0"
+                mass="0.0001"
+                ixx="0.0001" ixy="0.0" ixz="0.0"
+                iyy="0.0001" iyz="0.0"
+                izz="0.0001"
+                size="0.0001 0.0001 0.0001"/>
 
-    <material name="Red">
-        <color rgba="${204/255} ${0.0/255} ${0.0/255} ${255/255}"/>
-    </material>
-
-    <material name="White">
-        <color rgba="${255/255} ${255/255} ${255/255} ${255/255}"/>
-    </material>
-
-    <material name="Blue">
-        <color rgba="${0.0/255} ${0.0/255} ${204/255} ${255/255}"/>
-    </material>
-
-    <!-- Property list -->
-    <!-- All the units are in m-kg-s-radians unit system -->
-    <xacro:property name="M_PI" value="3.141592653"/>
-    <xacro:property name="DEG_TO_RAD" value="0.017453293"/>
-
-    <!-- Main body dimensions -->
-    <xacro:property name="chassis_length" value="1.02"/>
-    <xacro:property name="chassis_width" value="0.651"/>
-    <xacro:property name="chassis_height" value="0.445"/>
-    <xacro:property name="chassis_mass" value="5"/> <!-- in Kg -->
-
-    <!-- Base footprint -->
-    <link name="chassis_footprint">
-        <visual>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
-            <geometry>
-                <box size="0.001 0.001 0.001"/>
-            </geometry>
-        </visual>
-
-        <inertial>
-            <origin xyz="0 0 0"/>
-            <mass value="0.0001"/>
-            <inertia ixx="0.0001" ixy="0.0" ixz="0.0"
-                     iyy="0.0001" iyz="0.0"
-                     izz="0.0001"/>
-        </inertial>
-    </link>
-
-    <gazebo reference="chassis_footprint">
+    <gazebo reference="${r_link_00_name}">
         <turnGravityOff>false</turnGravityOff>
     </gazebo>
 
-    <joint name="chassis_footprint_joint" type="fixed">
-        <parent link="chassis_footprint"/>
-        <child link="chassis_link"/>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-    </joint>
+    <m_joint name="${r_link_00_name}__${r_link_01_name}" type="fixed"
+             axis_xyz="0 0 0"
+             origin_rpy="0 0 0" origin_xyz="0 0 0"
+             parent="${r_link_00_name}" child="${r_link_01_name}"
+             limit_e="0" limit_l="0" limit_u="0" limit_v="0"/>
 
-    <link name="chassis_link">
-        <visual>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
-            <geometry>
-                <box size ="${chassis_length} ${chassis_width} ${chassis_height}"/>
-            </geometry>
-            <material name="white"/>
-        </visual>
+    <m_link_mesh name="${r_link_01_name}"
+                 color="White"
+                 origin_rpy="0 0 0" origin_xyz="0 0 ${chassis_height/2}"
+                 mass="1.0"
+                 ixx="0.0001" ixy="0.0" ixz="0.0"
+                 iyy="0.0001" iyz="0.0"
+                 izz="0.0001"
+                 meshfile="package://rover_desc_pkg/meshes/rover_chassis.stl"
+                 meshscale="1 1 1"/>
 
-        <collision>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
-            <geometry>
-                <box size ="${chassis_length} ${chassis_width} ${chassis_height}"/>
-            </geometry>
-        </collision>
-
-        <inertial>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
-            <mass value="${chassis_mass}"/>
-            <inertia ixx="50" ixy="0" ixz="0"
-                     iyy="50" iyz="0"
-                     izz="50"/>
-        </inertial>
-    </link>
-
-    <gazebo reference="chassis_link">
+    <gazebo reference="${r_link_01_name}">
         <material>Gazebo/White</material>
         <turnGravityOff>false</turnGravityOff>
     </gazebo>
-
-    <!-- Wheels definitions -->
-
+    <!-- End - Robot Description -->
 
     <!-- Rover -->
     <gazebo>
