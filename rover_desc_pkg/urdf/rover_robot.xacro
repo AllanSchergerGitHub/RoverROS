@@ -40,6 +40,27 @@
         <material>Gazebo/White</material>
         <turnGravityOff>false</turnGravityOff>
     </gazebo>
+
+    <m_joint name="${r_link_01_name}__${r_link_02_name}" type="fixed"
+             axis_xyz="0 0 0"
+             origin_rpy="0 0 0" origin_xyz="0 0 0"
+             parent="${r_link_01_name}" child="${r_link_02_name}"
+             limit_e="0" limit_l="0" limit_u="0" limit_v="0"/>
+
+    <m_link_mesh name="${r_link_02_name}"
+                 color="Green"
+                 origin_rpy="0 0 0" origin_xyz="0 0 ${inverter_height/2}"
+                 mass="1.0"
+                 ixx="0.0001" ixy="0.0" ixz="0.0"
+                 iyy="0.0001" iyz="0.0"
+                 izz="0.0001"
+                 meshfile="package://rover_desc_pkg/meshes/inverter.stl"
+                 meshscale="1 1 1"/>
+
+    <gazebo reference="${r_link_02_name}">
+        <material>Gazebo/Green</material>
+        <turnGravityOff>false</turnGravityOff>
+    </gazebo>
     <!-- End - Robot Description -->
 
     <!-- Rover -->
