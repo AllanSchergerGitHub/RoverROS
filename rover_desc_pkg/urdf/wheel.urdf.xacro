@@ -1,19 +1,9 @@
 <?xml version="1.0"?>
 <robot name="wheel" xmlns:xacro="http://www.ros.org/wiki/xacro">
-    <!-- Wheels -->
-    <xacro:property name="wheel_radius" value="0.178"/>
-    <xacro:property name="wheel_height" value="0.114"/>
-    <xacro:property name="wheel_mass" value="1.0"/> <!-- in Kg -->
-
-    <xacro:property name="base_x_origin_to_wheel_origin" value="0.25"/>
-    <xacro:property name="base_y_origin_to_wheel_origin" value="0.3"/>
-    <xacro:property name="base_z_origin_to_wheel_origin" value="0.0"/>
-
-    <xacro:macro name="cylinder_inertia" params="m r h">
-        <intertia ixx="${m*(3*r*r+h*h)/12}" ixy="0.0" ixz="0.0"
-                  iyy="${m*(3*r*r+h*h)/12}" iyz="0.0"
-                  izz="${m*r*r/2}"/>
-    </xacro:macro>
+    <!-- Begin - Include -->
+    <xacro:include filename="$(find rover_desc_pkg)/urdf/robot_parameters.xacro"/>
+    <xacro:include filename="$(find rover_desc_pkg)/urdf/links_joints.xacro"/>
+    <!-- End - Include -->
 
     <xacro:macro name="wheel" params="fb ls parent translateX translateY flipY"> <!-- fb: front, back; ls: left, right -->
         <link name="${fb}_{ls}_wheel">
