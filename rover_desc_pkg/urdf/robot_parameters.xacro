@@ -2,6 +2,7 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
     <xacro:property name="r_link_00_name" value="chassis_footprint"/>
     <xacro:property name="r_link_01_name" value="chassis_link"/>
+    <xacro:property name="r_link_02_name" value="inverter_link"/>
 
     <!-- Color parameters -->
     <material name="Black">
@@ -20,15 +21,25 @@
         <color rgba="${0.0/255} ${0.0/255} ${204/255} ${255/255}"/>
     </material>
 
+    <material name="Green">
+        <color rgba="${0.0/255} ${204/255} ${0.0/255} ${255/255}"/>
+    </material>
+
     <!-- All the units are in m-kg-s-radians unit system -->
     <xacro:property name="M_PI" value="3.141592653"/>
     <xacro:property name="DEG_TO_RAD" value="0.017453293"/>
 
-    <!-- Main body dimensions -->
+    <!-- Chassis dimensions -->
     <xacro:property name="chassis_length" value="1.016"/>
     <xacro:property name="chassis_width" value="0.6096"/>
     <xacro:property name="chassis_height" value="0.4445"/>
     <xacro:property name="chassis_mass" value="5"/> <!-- in Kg -->
+
+    <!-- Inverter dimensions -->
+    <xacro:property name="inverter_length" value="0.400"/>
+    <xacro:property name="inverter_width" value="0.2353"/>
+    <xacro:property name="inverter_height" value="0.400"/>
+    <xacro:property name="inverter_mass" value="5"/> <!-- in Kg -->
 
     <!-- Wheels -->
     <xacro:property name="wheel_radius" value="0.178"/>
