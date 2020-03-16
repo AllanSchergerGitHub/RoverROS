@@ -5,8 +5,8 @@
     <xacro:include filename="$(find rover_desc_pkg)/urdf/links_joints.xacro"/>
     <!-- End - Include -->
 
-    <xacro:macro name="wheel" params="fb ls parent translateX translateY flipY"> <!-- fb: front, back; ls: left, right -->
-        <link name="${fb}_{ls}_wheel">
+    <xacro:macro name="wheel" params="fb lr parent translateX translateY"> <!-- fb: front, back; lr: left, right -->
+        <!-- <link name="${fb}_{ls}_wheel">
             <visual>
                 <origin xyz="0 0 0" rpy="${flipY*M_PI/2} 0 0"/>
                 <geometry>
@@ -27,9 +27,29 @@
                     <cylinder_inertia m="${wheel_mass}" r="${wheel_radius}" h="${wheel_height}"/>
                 </inertial>
             </visual>
-        </link>
+        </link> -->
+        <m_joint name="${r_link_01_name}__${fb}_{ls}_wheel" type="fixed"
+                 axis_xyz="0 0 0"
+                 origin_rpy="0 0 0" origin_xyz="${translateX * base_x_origin_to_wheel_origin} ${translateY * base_y_origin_to_wheel_origin} ${wheel_radius/2}"
+                 parent="${parent}" child="${fb}_{ls}_wheel"
+                 limit_e="0" limit_l="0" limit_u="0" limit_v="0"/>
 
-        <joint name="${fb}_{ls}_wheel_joint" type="continuous">
+        <m_link_mesh name="${fb}_{ls}_wheel"
+                     color="Black"
+                     origin_rpy="0 0 0" origin_xyz="${translateX * base_x_origin_to_wheel_origin} ${translateY * base_y_origin_to_wheel_origin} ${wheel_radius/2}"
+                     mass="1.0"
+                     ixx="0.0001" ixy="0.0" ixz="0.0"
+                     iyy="0.0001" iyz="0.0"
+                     izz="0.0001"
+                     meshfile="package://rover_desc_pkg/meshes/rover_wheel.stl"
+                     meshscale="1 1 1"/>
+
+        <gazebo reference="${fb}_{ls}_wheel">
+            <material>Gazebo/Black</material>
+            <turnGravityOff>false</turnGravityOff>
+        </gazebo>
+
+        <!-- <joint name="${fb}_{ls}_wheel_joint" type="continuous">
             <parent link="${parent}"/>
             <child link="${fb}_{lr}_wheel"/>
             <origin xyz="${translateX * base_x_origin_to_wheel_origin}
@@ -38,16 +58,16 @@
             <axis xyz="0 1 0" rpy="0 0 0"/>
             <limit effort="100" velocity="100"/>
             <joint_properties damping="0.0" friction="0.0"/>
-        </joint>
+        </joint> -->
 
         <!-- Transmission is important to link the joints and the controller -->
-        <transmission name="${fb}_${lr}_wheel_joint_trans">
+        <!-- <transmission name="${fb}_${lr}_wheel_joint_trans">
             <type>transmission_interface/SimpleTransmission</type>
             <joint name="${fb}_${lr}_wheel_joint"/>
             <actuator name="${fb}_{lr}_wheel_joint_motor">
                 <hardwareInterface>EffortJointInterface</hardwareInterface>
                 <mechanicalReduction>1</mechanicalReduction>
             </actuator>
-        </transmission>
+        </transmission> -->
     </xacro:macro>
 </robot>
