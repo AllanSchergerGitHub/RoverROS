@@ -64,8 +64,10 @@
     </gazebo>
 
     <!-- Wheel -->
-    <wheel fb="front" lr="right" parent="${r_link_01_name}" translateX="1" translateY="-1"/>
-
+    <wheel fr="front" lr="right" parent="${r_link_01_name}" translateX="1" translateY="-1"/>
+    <wheel fr="front" lr="left" parent="${r_link_01_name}" translateX="1" translateY="1"/>
+    <wheel fr="rear" lr="right" parent="${r_link_01_name}" translateX="-1" translateY="-1"/>
+    <wheel fr="rear" lr="left" parent="${r_link_01_name}" translateX="-1" translateY="1"/>
     <!-- End - Robot Description -->
 
     <!-- Rover -->
