@@ -5,25 +5,41 @@
     <xacro:property name="r_link_02_name" value="inverter_link"/>
 
     <!-- Color parameters -->
-    <material name="Black">
-        <color rgba="${0.0/255} ${0.0/255} ${0.0/255} ${255/255}"/>
-    </material>
+    <xacro:property name="Red_Value" value="{204/255} ${0.0/255} ${0.0/255} ${255/255}"/>
+    <xacro:property name="Green_Value" value="${0.0/255} ${204/255} ${0.0/255} ${255/255}"/>
+    <xacro:property name="Blue_Value" value="${0.0/255} ${0.0/255} ${204/255} ${255/255}"/>
+    <xacro:property name="Black_Value" value="${0.0/255} ${0.0/255} ${0.0/255} ${255/255}"/>
+    <xacro:property name="White_Value" value="${255/255} ${255/255} ${255/255} ${255/255}"/>
 
-    <material name="Red">
-        <color rgba="${204/255} ${0.0/255} ${0.0/255} ${255/255}"/>
-    </material>
+    <xacro:macro name="Red">
+        <material name="">
+            <color rgba="${Red_Value}"/>
+        </material>
+    </xacro:macro>
 
-    <material name="White">
-        <color rgba="${255/255} ${255/255} ${255/255} ${255/255}"/>
-    </material>
+    <xacro:macro name="Green">
+        <material name="">
+            <color rgba="${Green_Value}"/>
+        </material>
+    </xacro:macro>
 
-    <material name="Blue">
-        <color rgba="${0.0/255} ${0.0/255} ${204/255} ${255/255}"/>
-    </material>
+    <xacro:macro name="Blue">
+        <material name="">
+            <color rgba="${Blue_Value}"/>
+        </material>
+    </xacro:macro>
 
-    <material name="Green">
-        <color rgba="${0.0/255} ${204/255} ${0.0/255} ${255/255}"/>
-    </material>
+    <xacro:macro name="Black">
+        <material name="">
+            <color rgba="${Black_Value}"/>
+        </material>
+    </xacro:macro>
+
+    <xacro:macro name="White">
+        <material name="">
+            <color rgba="${White_Value}"/>
+        </material>
+    </xacro:macro>
 
     <!-- All the units are in m-kg-s-radians unit system -->
     <xacro:property name="M_PI" value="3.141592653"/>
