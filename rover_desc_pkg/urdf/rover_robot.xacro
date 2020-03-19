@@ -38,9 +38,9 @@
                  meshscale="1 1 1"/>
 
     <gazebo reference="${r_link_01_name}">
-        <visual name="visual">
+        <visual name="${r_link_01_name}_visual">
             <material>
-                <ambient>0 0 0 0</ambient>
+                <ambient>0.5 0.5 0.5 1.0</ambient>
                 <specular>0.8 0.8 0.8 0.1</specular>
                 <diffuse>1.0 1.0 1.0 1.0</diffuse>
             </material>
@@ -65,7 +65,7 @@
                  meshscale="1 1 1"/>
 
     <gazebo reference="${r_link_02_name}">
-        <visual name="visual">
+        <visual name="${r_link_02_name}_visual">
             <material>
                 <ambient>0.5 0.5 0.5 1.0</ambient>
                 <specular>0.8 0.8 0.8 0.1</specular>
