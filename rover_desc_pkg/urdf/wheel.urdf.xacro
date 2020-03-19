@@ -23,7 +23,13 @@
                      meshscale="1 1 1"/>
 
         <gazebo reference="${fr}_${lr}_wheel">
-            <material>Gazebo/Black</material>
+            <visual name="${fr}_${lr}_wheel_visual">
+                <material>
+                    <ambient>0.5 0.5 0.5 1.0</ambient>
+                    <specular>0.8 0.8 0.8 0.1</specular>
+                    <diffuse>1.0 1.0 1.0 1.0</diffuse>
+                </material>
+            </visual>
             <turnGravityOff>false</turnGravityOff>
         </gazebo>
 
