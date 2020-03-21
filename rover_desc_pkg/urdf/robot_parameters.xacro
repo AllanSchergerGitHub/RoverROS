@@ -2,7 +2,7 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
     <xacro:property name="r_link_00_name" value="chassis_footprint"/>
     <xacro:property name="r_link_01_name" value="chassis_link"/>
-    <xacro:property name="r_link_02_name" value="inverter_link"/>
+    <xacro:property name="r_link_02_name" value="steer_link"/>
 
     <!-- Color parameters -->
     <xacro:property name="Red_Value" value="{204/255} ${0.0/255} ${0.0/255} ${255/255}"/>
