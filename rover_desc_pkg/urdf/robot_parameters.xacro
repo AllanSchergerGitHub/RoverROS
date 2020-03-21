@@ -57,6 +57,16 @@
     <xacro:property name="inverter_height" value="0.400"/>
     <xacro:property name="inverter_mass" value="5"/> <!-- in Kg -->
 
+    <!-- Steer dimensions -->
+    <xacro:property name="steer_length" value="0.217"/>
+    <xacro:property name="steer_width" value="0.234"/>
+    <xacro:property name="steer_height" value="0.618"/>
+    <xacro:property name="steer_mass" value="5"/> <!-- in Kg -->
+
+    <xacro:property name="chassis_x_origin_to_steer_x_origin" value="0.3715"/> <!-- Distance from chassis origin to mount point in X direction -->
+    <xacro:property name="chassis_y_origin_to_steer_y_origin" value="0.3148"/> <!-- Distance from chassis origin to mount point in Y direction -->
+    <xacro:property name="chassis_z_origin_to_steer_z_origin" value="0.1305"/> <!-- Distance from chassis origin to mount point in Z direction -->
+
     <!-- Wheels -->
     <xacro:property name="wheel_radius" value="0.178"/>
     <xacro:property name="wheel_height" value="0.114"/>
