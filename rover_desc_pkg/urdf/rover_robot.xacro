@@ -50,13 +50,13 @@
     </gazebo>
 
     <!-- Steers & Wheels -->
-    <steer fr="front" lr="right" type="fixed" parent="${r_link_01_name}" translateX="1" translateY="-1"/>
+    <steer_f lr="right" parent="${r_link_01_name}" translateX="1" translateY="-1"/>
     <wheel fr="front" lr="right" parent="front_right_steer" translateX="1" translateY="-1"/>
-    <steer fr="front" lr="left" type="fixed" parent="${r_link_01_name}" translateX="1" translateY="1"/>
+    <steer_f lr="left" parent="${r_link_01_name}" translateX="1" translateY="1"/>
     <wheel fr="front" lr="left" parent="front_left_steer" translateX="1" translateY="1"/>
-    <steer fr="rear" lr="right" type="fixed" parent="${r_link_01_name}" translateX="-1" translateY="-1"/>
+    <steer_r lr="right" parent="${r_link_01_name}" translateX="-1" translateY="-1"/>
     <wheel fr="rear" lr="right" parent="rear_right_steer" translateX="-1" translateY="-1"/>
-    <steer fr="rear" lr="left" type="fixed" parent="${r_link_01_name}" translateX="-1" translateY="1"/>
+    <steer_r lr="left" parent="${r_link_01_name}" translateX="-1" translateY="1"/>
     <wheel fr="rear" lr="left" parent="rear_left_steer" translateX="-1" translateY="1"/>
     <!-- End - Robot Description -->
 
