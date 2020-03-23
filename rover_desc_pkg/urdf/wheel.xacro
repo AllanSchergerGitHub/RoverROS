@@ -15,8 +15,8 @@
         <m_link_mesh name="${fr}_${lr}_wheel"
                      color="Black"
                      origin_rpy="0 0 0"
-                     origin_xyz="${translateX * base_x_origin_to_wheel_origin}
-                                 ${translateY * base_y_origin_to_wheel_origin}
+                     origin_xyz="${translateX * chassis_x_origin_to_wheel_x_origin}
+                                 ${translateY * chassis_y_origin_to_wheel_y_origin}
                                  ${wheel_radius}"
                      mass="1.0"
                      ixx="0.0001" ixy="0.0" ixz="0.0"
