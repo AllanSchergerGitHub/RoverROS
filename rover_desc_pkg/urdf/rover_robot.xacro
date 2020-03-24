@@ -1,70 +1,70 @@
 <?xml version="1.0"?>
 <robot name="rover_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
-    <!-- Begin - Include -->
-    <xacro:include filename="$(find rover_desc_pkg)/urdf/robot_parameters.xacro"/>
-    <xacro:include filename="$(find rover_desc_pkg)/urdf/links_joints.xacro"/>
-    <xacro:include filename="$(find rover_desc_pkg)/urdf/steer.xacro"/>
-    <xacro:include filename="$(find rover_desc_pkg)/urdf/wheel.xacro"/>
-    <!-- End - Include -->
+  <!-- Begin - Include -->
+  <xacro:include filename="$(find rover_desc_pkg)/urdf/robot_parameters.xacro"/>
+  <xacro:include filename="$(find rover_desc_pkg)/urdf/links_joints.xacro"/>
+  <xacro:include filename="$(find rover_desc_pkg)/urdf/steer.xacro"/>
+  <xacro:include filename="$(find rover_desc_pkg)/urdf/wheel.xacro"/>
+  <!-- End - Include -->
 
-    <!-- Begin - Robot Description -->
-    <!-- Chassis footprint -->
-    <m_link_box name="${r_link_00_name}"
-                color="White"
-                origin_rpy="0 0 0" origin_xyz="0 0 0"
-                mass="0.0001"
-                ixx="0.0001" ixy="0.0" ixz="0.0"
-                iyy="0.0001" iyz="0.0"
-                izz="0.0001"
-                size="0.0001 0.0001 0.0001"/>
+  <!-- Begin - Robot Description -->
+  <!-- Chassis footprint -->
+  <m_link_box name="${r_link_00_name}"
+              color="${White_Value}"
+              origin_rpy="0 0 0" origin_xyz="0 0 0"
+              mass="0.0001"
+              ixx="0.0001" ixy="0.0" ixz="0.0"
+              iyy="0.0001" iyz="0.0"
+              izz="0.0001"
+              size="0.0001 0.0001 0.0001"/>
 
-    <gazebo reference="${r_link_00_name}">
-        <turnGravityOff>false</turnGravityOff>
-    </gazebo>
+  <gazebo reference="${r_link_00_name}">
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
 
-    <m_joint name="${r_link_00_name}__${r_link_01_name}" type="fixed"
-             axis_xyz="0 0 0"
-             origin_rpy="0 0 0" origin_xyz="0 0 0"
-             parent="${r_link_00_name}" child="${r_link_01_name}"
-             limit_e="0" limit_l="0" limit_u="0" limit_v="0"/>
+  <m_joint name="${r_link_00_name}__${r_link_01_name}" type="fixed"
+           axis_xyz="0 0 0"
+           origin_rpy="0 0 0" origin_xyz="0 0 0"
+           parent="${r_link_00_name}" child="${r_link_01_name}"
+           limit_e="0" limit_l="0" limit_u="0" limit_v="0"/>
 
-    <m_link_mesh name="${r_link_01_name}"
-                 color="White"
-                 origin_rpy="0 0 0"
-                 origin_xyz="0 0 ${wheel_radius + steer_z_origin_to_wheel_z_origin - chassis_z_origin_to_steer_z_origin}"
-                 mass="1.0"
-                 ixx="0.0001" ixy="0.0" ixz="0.0"
-                 iyy="0.0001" iyz="0.0"
-                 izz="0.0001"
-                 meshfile="package://rover_desc_pkg/meshes/rover_chassis.dae"
-                 meshscale="1 1 1"/>
+  <m_link_mesh name="${r_link_01_name}"
+               color="${White_Value}"
+               origin_rpy="0 0 0"
+               origin_xyz="0 0 ${wheel_radius + steer_z_origin_to_wheel_z_origin - chassis_z_origin_to_steer_z_origin}"
+               mass="1.0"
+               ixx="0.0001" ixy="0.0" ixz="0.0"
+               iyy="0.0001" iyz="0.0"
+               izz="0.0001"
+               meshfile="package://rover_desc_pkg/meshes/rover_chassis.dae"
+               meshscale="1 1 1"/>
 
-    <gazebo reference="${r_link_01_name}">
-        <visual name="${r_link_01_name}_visual">
-            <material>
-                <ambient>0.5 0.5 0.5 1.0</ambient>
-                <specular>0.8 0.8 0.8 0.1</specular>
-                <diffuse>1.0 1.0 1.0 1.0</diffuse>
-            </material>
-        </visual>
-        <turnGravityOff>false</turnGravityOff>
-    </gazebo>
+  <gazebo reference="${r_link_01_name}">
+    <visual name="${r_link_01_name}_visual">
+      <material>
+        <ambient>0.5 0.5 0.5 1.0</ambient>
+        <specular>0.8 0.8 0.8 0.1</specular>
+        <diffuse>1.0 1.0 1.0 1.0</diffuse>
+      </material>
+    </visual>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
 
-    <!-- Steers & Wheels -->
-    <steer fr="front" lr="right" parent="${r_link_01_name}" translateX="1" translateY="-1"/>
-    <wheel fr="front" lr="right" parent="front_right_steer" translateX="1" translateY="-1"/>
-    <steer fr="front" lr="left" parent="${r_link_01_name}" translateX="1" translateY="1"/>
-    <wheel fr="front" lr="left" parent="front_left_steer" translateX="1" translateY="1"/>
-    <steer fr="rear" lr="right" parent="${r_link_01_name}" translateX="-1" translateY="-1"/>
-    <wheel fr="rear" lr="right" parent="rear_right_steer" translateX="-1" translateY="-1"/>
-    <steer fr="rear" lr="left" parent="${r_link_01_name}" translateX="-1" translateY="1"/>
-    <wheel fr="rear" lr="left" parent="rear_left_steer" translateX="-1" translateY="1"/>
-    <!-- End - Robot Description -->
+  <!-- Steers & Wheels -->
+  <steer fr="front" lr="right" parent="${r_link_01_name}" translateX="1" translateY="-1"/>
+  <wheel fr="front" lr="right" parent="front_right_steer" translateX="1" translateY="-1"/>
+  <steer fr="front" lr="left" parent="${r_link_01_name}" translateX="1" translateY="1"/>
+  <wheel fr="front" lr="left" parent="front_left_steer" translateX="1" translateY="1"/>
+  <steer fr="rear" lr="right" parent="${r_link_01_name}" translateX="-1" translateY="-1"/>
+  <wheel fr="rear" lr="right" parent="rear_right_steer" translateX="-1" translateY="-1"/>
+  <steer fr="rear" lr="left" parent="${r_link_01_name}" translateX="-1" translateY="1"/>
+  <wheel fr="rear" lr="left" parent="rear_left_steer" translateX="-1" translateY="1"/>
+  <!-- End - Robot Description -->
 
-    <!-- Rover -->
-    <gazebo>
-        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-          <robotNamespace>/rover</robotNamespace>
-        </plugin>
-    </gazebo>
+  <!-- Rover -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/rover</robotNamespace>
+    </plugin>
+  </gazebo>
 </robot>
