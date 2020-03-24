@@ -6,6 +6,14 @@
     <!-- End - Include -->
 
     <xacro:macro name="wheel" params="fr lr parent translateX translateY"> <!-- fr: front, rear; lr: left, right -->
+        <!-- Compute wheel position based on its location -->
+        <xacro:property name="wheel_x" value="${translateX * world_x_origin_to_wheel_x_origin}" scope="local"/>
+        <xacro:property name="wheel_y" value="${translateY * world_y_origin_to_wheel_y_origin}" scope="local"/>
+        <xacro:property name="wheel_z" value="${wheel_radius}" scope="local"/>
+        <xacro:if value="${lr == 'right'}">
+            <xacro:property name="wheel_z" value="${wheel_radius + 0.0032}" scope="local"/>
+        </xacro:if>
+
         <m_joint name="${r_link_01_name}__${fr}_${lr}_wheel" type="fixed"
                  axis_xyz="0 0 0"
                  origin_rpy="0 0 0" origin_xyz="0 0 0"
@@ -15,9 +23,7 @@
         <m_link_mesh name="${fr}_${lr}_wheel"
                      color="Black"
                      origin_rpy="0 0 0"
-                     origin_xyz="${translateX * chassis_x_origin_to_wheel_x_origin}
-                                 ${translateY * chassis_y_origin_to_wheel_y_origin}
-                                 ${wheel_radius}"
+                     origin_xyz="${wheel_x} ${wheel_y} ${wheel_z}"
                      mass="1.0"
                      ixx="0.0001" ixy="0.0" ixz="0.0"
                      iyy="0.0001" iyz="0.0"
