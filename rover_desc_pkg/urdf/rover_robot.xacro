@@ -30,7 +30,8 @@
 
     <m_link_mesh name="${r_link_01_name}"
                  color="White"
-                 origin_rpy="0 0 0" origin_xyz="0 0 ${(chassis_height/2)}"
+                 origin_rpy="0 0 0"
+                 origin_xyz="0 0 ${wheel_radius + steer_z_origin_to_wheel_z_origin - chassis_z_origin_to_steer_z_origin}"
                  mass="1.0"
                  ixx="0.0001" ixy="0.0" ixz="0.0"
                  iyy="0.0001" iyz="0.0"
