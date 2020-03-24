@@ -7,27 +7,28 @@
 
     <xacro:macro name="steer" params="fr lr parent translateX translateY"> <!-- fr: front, rear; lr: left, right -->
         <!-- Compute steer position based on its location -->
-        <xacro:if value="${fr == 'front'}">
-            <xacro:property name="origin_steer"
-                            value="${translateX * chassis_x_origin_to_steer_x_origin}
-                                   ${translateY * chassis_y_origin_to_steer_y_origin}
-                                   ${(chassis_height/2) + chassis_z_origin_to_steer_z_origin}"/>
-        </xacro:if>
+        <xacro:property name="steer_x" value="${translateX * world_x_origin_to_steer_x_origin}" scope="local"/>
+        <xacro:property name="steer_y" value="${translateY * world_y_origin_to_steer_y_origin}" scope="local"/>
+        <xacro:property name="steer_z" value="${wheel_radius + steer_z_origin_to_wheel_z_origin}" scope="local"/>
+
         <xacro:if value="${fr == 'rear'}">
-            <xacro:property name="origin_steer"
-                            value="${translateX * (chassis_x_origin_to_steer_x_origin + 0.063)}
-                                   ${translateY * chassis_y_origin_to_steer_y_origin}
-                                   ${(chassis_height/2) + chassis_z_origin_to_steer_z_origin}"/>
+            <xacro:property name="steer_x"
+                            value="${translateX * (world_x_origin_to_steer_x_origin + 0.063)}"
+                            scope="local"/>
         </xacro:if>
 
         <!-- Decide steer mesh file based on its location -->
         <xacro:if value="${lr == 'right'}">
-            <xacro:property name="mesh_file"
-                            value="package://rover_desc_pkg/meshes/rover_steer_r.dae"/>
+            <xacro:property name="mesh_file" value="package://rover_desc_pkg/meshes/rover_steer_r.dae"/>
+            <xacro:property name="steer_z"
+                            value="${wheel_radius + steer_z_origin_to_wheel_z_origin + 0.0032}"
+                            scope="local"/>
         </xacro:if>
         <xacro:if value="${lr == 'left'}">
-            <xacro:property name="mesh_file"
-                            value="package://rover_desc_pkg/meshes/rover_steer_l.dae"/>
+            <xacro:property name="mesh_file" value="package://rover_desc_pkg/meshes/rover_steer_l.dae"/>
+            <!-- <xacro:property name="steer_z"
+                                 value="${wheel_radius + steer_z_origin_to_wheel_z_origin}"
+                                 scope="local"/> -->
         </xacro:if>
 
         <!-- Joint description -->
@@ -41,7 +42,7 @@
         <m_link_mesh name="${fr}_${lr}_steer"
                      color="White"
                      origin_rpy="0 0 0"
-                     origin_xyz="${origin_steer}"
+                     origin_xyz="${steer_x} ${steer_y} ${steer_z}"
                      mass="1.0"
                      ixx="0.0001" ixy="0.0" ixz="0.0"
                      iyy="0.0001" iyz="0.0"
