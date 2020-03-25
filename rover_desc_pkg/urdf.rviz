@@ -7,17 +7,8 @@ Panels:
         - /Global Options1
         - /Status1
         - /Grid1
-        - /Grid1/Offset1
         - /RobotModel1
-        - /RobotModel1/Links1
-        - /RobotModel1/Links1/chassis_footprint1
-        - /RobotModel1/Links1/chassis_footprint1/Position1
-        - /RobotModel1/Links1/chassis_footprint1/Orientation1
-        - /RobotModel1/Links1/chassis_link1
-        - /RobotModel1/Links1/chassis_link1/Position1
-        - /RobotModel1/Links1/chassis_link1/Orientation1
         - /TF1
-        - /TF1/Frames1
       Splitter Ratio: 0.6676470637321472
     Tree Height: 668
   - Class: rviz/Selection
@@ -77,13 +68,53 @@ Visualization Manager:
         Link Tree Style: Links in Alphabetic Order
         chassis_footprint:
           Alpha: 1
-          Show Axes: true
-          Show Trail: true
+          Show Axes: false
+          Show Trail: false
           Value: true
         chassis_link:
           Alpha: 1
-          Show Axes: true
-          Show Trail: true
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        front_left_steer:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        front_left_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        front_right_steer:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        front_right_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rear_left_steer:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rear_left_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rear_right_steer:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rear_right_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
           Value: true
       Name: RobotModel
       Robot Description: robot_description
@@ -100,15 +131,42 @@ Visualization Manager:
           Value: true
         chassis_link:
           Value: true
+        front_left_steer:
+          Value: true
+        front_left_wheel:
+          Value: true
+        front_right_steer:
+          Value: true
+        front_right_wheel:
+          Value: true
+        rear_left_steer:
+          Value: true
+        rear_left_wheel:
+          Value: true
+        rear_right_steer:
+          Value: true
+        rear_right_wheel:
+          Value: true
       Marker Scale: 1
       Name: TF
-      Show Arrows: true
-      Show Axes: true
-      Show Names: true
+      Show Arrows: false
+      Show Axes: false
+      Show Names: false
       Tree:
         chassis_footprint:
           chassis_link:
-            {}
+            front_left_steer:
+              front_left_wheel:
+                {}
+            front_right_steer:
+              front_right_wheel:
+                {}
+            rear_left_steer:
+              rear_left_wheel:
+                {}
+            rear_right_steer:
+              rear_right_wheel:
+                {}
       Update Interval: 0
       Value: true
   Enabled: true
@@ -139,25 +197,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 11.531661987304688
+      Distance: 2.17677640914917
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.07429389655590057
-        Y: 1.2153303623199463
-        Z: 0.1226014494895935
+        X: 0.6287959814071655
+        Y: 0.0196361243724823
+        Z: 0.5046935677528381
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.3702029287815094
+      Pitch: 0.35520294308662415
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.4304056763648987
+      Yaw: 0.020408153533935547
     Saved: ~
 Window Geometry:
   Displays:
