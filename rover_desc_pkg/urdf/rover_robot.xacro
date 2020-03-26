@@ -34,13 +34,7 @@
                meshscale="1 1 1"/>
 
   <gazebo reference="${r_link_01_name}">
-    <visual name="${r_link_01_name}_visual">
-      <material>
-        <ambient>0.5 0.5 0.5 1.0</ambient>
-        <specular>0.8 0.8 0.8 0.1</specular>
-        <diffuse>1.0 1.0 1.0 1.0</diffuse>
-      </material>
-    </visual>
+    <material>Gazebo/Grey</material>
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
 
@@ -53,7 +47,7 @@
   <steer fr="front" lr="left" parent="${r_link_01_name}" type="revolute" translateX="1" translateY="1"/>
   <steer fr="rear" lr="right" parent="${r_link_01_name}" type="fixed" translateX="-1" translateY="-1"/>
   <steer fr="rear" lr="left" parent="${r_link_01_name}" type="fixed" translateX="-1" translateY="1"/>
-  
+
   <wheel fr="front" lr="right" parent="front_right_steer" translateX="1" translateY="-1"/>
   <wheel fr="front" lr="left" parent="front_left_steer" translateX="1" translateY="1"/>
   <wheel fr="rear" lr="right" parent="rear_right_steer" translateX="-1" translateY="-1"/>

@@ -32,11 +32,12 @@
 
     <gazebo reference="${fr}_${lr}_wheel">
       <visual name="${fr}_${lr}_wheel_visual">
-        <material>
-          <ambient>0.5 0.5 0.5 1.0</ambient>
-          <specular>0.8 0.8 0.8 0.1</specular>
-          <diffuse>1.0 1.0 1.0 1.0</diffuse>
-        </material>
+        <mu1 value="1.0"/>
+        <mu2 value="1.0"/>
+        <kp value="10000000.0"/>
+        <kd value="1.0"/>
+        <fdir1 value="0 1 0"/>
+        <material>Gazebo/Grey</material>
       </visual>
       <turnGravityOff>false</turnGravityOff>
     </gazebo>
