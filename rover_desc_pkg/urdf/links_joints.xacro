@@ -26,7 +26,7 @@
         <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       </joint>
       <actuator name="motor_${name}">
-        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <!-- <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
@@ -47,7 +47,7 @@
         <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       </joint>
       <actuator name="motor_${name}">
-        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <!-- <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
