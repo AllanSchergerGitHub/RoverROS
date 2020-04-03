@@ -9,49 +9,44 @@
 
   <!-- Begin - Robot Description -->
   <!-- Chassis footprint -->
-  <m_link_box name="${r_link_00_name}"
-              color="${White_Value}"
-              origin_rpy="0 0 0" origin_xyz="0 0 0"
-              mass="0.0001"
-              ixx="0.0" ixy="0.0" ixz="0.0"
-              iyy="0.0" iyz="0.0"
-              izz="0.0"
-              size="0.0001 0.0001 0.0001"/>
+  <xacro:m_link_box name="${r_link_00_name}"
+                    color="white"
+                    origin_rpy="0 0 0" origin_xyz="0 0 0"
+                    size="0.0001 0.0001 0.0001"/>
 
   <gazebo reference="${r_link_00_name}">
-    <turnGravityOff>false</turnGravityOff>
+    <material>Gazebo/White</material>
   </gazebo>
 
-  <m_link_mesh name="${r_link_01_name}"
-               color="${White_Value}"
-               origin_rpy="0 0 0"
-               origin_xyz="0 0 ${wheel_radius + steer_z_origin_to_wheel_z_origin - chassis_z_origin_to_steer_z_origin}"
-               mass="1.0"
-               ixx="0.0001" ixy="0.0" ixz="0.0"
-               iyy="0.0001" iyz="0.0"
-               izz="0.0001"
-               meshfile="package://rover_desc_pkg/meshes/rover_chassis.dae"
-               meshscale="1 1 1"/>
+  <xacro:m_link_mesh name="${r_link_01_name}"
+                     color="gray"
+                     origin_rpy="0 0 0"
+                     origin_xyz="0 0 ${wheel_radius + steer_z_origin_to_wheel_z_origin - chassis_z_origin_to_steer_z_origin}"
+                     mass="1.0"
+                     ixx="0.0001" ixy="0.0" ixz="0.0"
+                     iyy="0.0001" iyz="0.0"
+                     izz="0.0001"
+                     meshfile="package://rover_desc_pkg/meshes/rover_chassis.dae"
+                     meshscale="1 1 1"/>
 
   <gazebo reference="${r_link_01_name}">
-    <material>Gazebo/Grey</material>
-    <turnGravityOff>false</turnGravityOff>
+    <material>Gazebo/Yellow</material>
   </gazebo>
 
-  <m_joint_fixed name="${r_link_00_name}__${r_link_01_name}"
-                 origin_rpy="0 0 0" origin_xyz="0 0 0"
-                 parent="${r_link_00_name}" child="${r_link_01_name}"/>
+  <xacro:m_joint_fixed name="${r_link_00_name}__${r_link_01_name}"
+                       origin_rpy="0 0 0" origin_xyz="0 0 0"
+                       parent="${r_link_00_name}" child="${r_link_01_name}"/>
 
   <!-- Steers & Wheels -->
-  <steer fr="front" lr="right" parent="${r_link_01_name}" type="revolute" translateX="1" translateY="-1"/>
-  <steer fr="front" lr="left" parent="${r_link_01_name}" type="revolute" translateX="1" translateY="1"/>
-  <steer fr="rear" lr="right" parent="${r_link_01_name}" type="fixed" translateX="-1" translateY="-1"/>
-  <steer fr="rear" lr="left" parent="${r_link_01_name}" type="fixed" translateX="-1" translateY="1"/>
+  <xacro:steer fr="front" lr="right" parent="${r_link_01_name}" type="revolute" translateX="1" translateY="-1"/>
+  <xacro:steer fr="front" lr="left" parent="${r_link_01_name}" type="revolute" translateX="1" translateY="1"/>
+  <xacro:steer fr="rear" lr="right" parent="${r_link_01_name}" type="fixed" translateX="-1" translateY="-1"/>
+  <xacro:steer fr="rear" lr="left" parent="${r_link_01_name}" type="fixed" translateX="-1" translateY="1"/>
 
-  <wheel fr="front" lr="right" parent="front_right_steer" translateX="1" translateY="-1"/>
-  <wheel fr="front" lr="left" parent="front_left_steer" translateX="1" translateY="1"/>
-  <wheel fr="rear" lr="right" parent="rear_right_steer" translateX="-1" translateY="-1"/>
-  <wheel fr="rear" lr="left" parent="rear_left_steer" translateX="-1" translateY="1"/>
+  <xacro:wheel fr="front" lr="right" parent="front_right_steer" translateX="1" translateY="-1"/>
+  <xacro:wheel fr="front" lr="left" parent="front_left_steer" translateX="1" translateY="1"/>
+  <xacro:wheel fr="rear" lr="right" parent="rear_right_steer" translateX="-1" translateY="-1"/>
+  <xacro:wheel fr="rear" lr="left" parent="rear_left_steer" translateX="-1" translateY="1"/>
   <!-- End - Robot Description -->
 
   <!-- Rover -->
