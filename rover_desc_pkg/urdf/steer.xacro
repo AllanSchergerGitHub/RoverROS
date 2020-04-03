@@ -32,34 +32,33 @@
     </xacro:if>
 
     <!-- Link description -->
-    <m_link_mesh name="${fr}_${lr}_steer"
-                 color="${Red_Value}"
-                 origin_rpy="0 0 0"
-                 origin_xyz="0 0 0"
-                 mass="1.0"
-                 ixx="0.0001" ixy="0.0" ixz="0.0"
-                 iyy="0.0001" iyz="0.0"
-                 izz="0.0001"
-                 meshfile="${mesh_file}"
-                 meshscale="1 1 1"/>
+    <xacro:m_link_mesh name="${fr}_${lr}_steer"
+                       color="darkgray"
+                       origin_rpy="0 0 0"
+                       origin_xyz="0 0 0"
+                       mass="1.0"
+                       ixx="0.0001" ixy="0.0" ixz="0.0"
+                       iyy="0.0001" iyz="0.0"
+                       izz="0.0001"
+                       meshfile="${mesh_file}"
+                       meshscale="1 1 1"/>
 
     <gazebo reference="${fr}_${lr}_steer">
       <material>Gazebo/Grey</material>
-      <turnGravityOff>false</turnGravityOff>
     </gazebo>
 
     <!-- Joint description -->
     <xacro:if value="${type == 'fixed'}">
-      <m_joint_fixed name="${parent}__${fr}_${lr}_steer"
-                     origin_rpy="0 0 0" origin_xyz="${steer_x} ${steer_y} ${steer_z}"
-                     parent="${parent}" child="${fr}_${lr}_steer"/>
+      <xacro:m_joint_fixed name="${parent}__${fr}_${lr}_steer"
+                           origin_rpy="0 0 0" origin_xyz="${steer_x} ${steer_y} ${steer_z}"
+                           parent="${parent}" child="${fr}_${lr}_steer"/>
     </xacro:if>
     <xacro:if value="${type == 'revolute'}">
-      <m_joint_rev name="${parent}__${fr}_${lr}_steer"
-                   axis_xyz="0 0 1"
-                   origin_rpy="0 0 0" origin_xyz="${steer_x} ${steer_y} ${steer_z}"
-                   parent="${parent}" child="${fr}_${lr}_steer"
-                   limit_e="100" limit_l="-${M_PI/2}" limit_u="${M_PI/2}" limit_v="100"/>
+      <xacro:m_joint_rev name="${parent}__${fr}_${lr}_steer"
+                         axis_xyz="0 0 1"
+                         origin_rpy="0 0 0" origin_xyz="${steer_x} ${steer_y} ${steer_z}"
+                         parent="${parent}" child="${fr}_${lr}_steer"
+                         limit_e="100" limit_l="-${M_PI/2}" limit_u="${M_PI/2}" limit_v="100"/>
     </xacro:if>
 
     <!-- Transmission is important to link the joints and the controller -->
