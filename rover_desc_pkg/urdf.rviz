@@ -9,6 +9,8 @@ Panels:
         - /Grid1
         - /RobotModel1
         - /TF1
+        - /TF1/Frames1
+        - /TF1/Tree1
       Splitter Ratio: 0.6676470637321472
     Tree Height: 668
   - Class: rviz/Selection
@@ -173,7 +175,7 @@ Visualization Manager:
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: chassis_link
+    Fixed Frame: chassis_footprint
     Frame Rate: 30
   Name: root
   Tools:
@@ -204,9 +206,9 @@ Visualization Manager:
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.6287959814071655
-        Y: 0.0196361243724823
-        Z: 0.5046935677528381
+        X: 0.6272033452987671
+        Y: 0.09767134487628937
+        Z: 0.5046935081481934
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
