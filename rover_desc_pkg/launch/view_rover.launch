@@ -4,8 +4,8 @@
     <!-- Parsing xacro and setting wheel description parameter -->
     <param name="robot_description" command="$(find xacro)/xacro $(find rover_desc_pkg)/urdf/rover_robot.xacro"/>
 
-    <!-- Setting gui parameter to true to display joint slider -->
-    <param name="use_gui" value="true"/>
+    <!-- Starting Joint state publisher_gui node which will run gui to control joints -->
+    <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui"/>
 
     <!-- Starting Joint state publisher node which will publish the joint values -->
     <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
