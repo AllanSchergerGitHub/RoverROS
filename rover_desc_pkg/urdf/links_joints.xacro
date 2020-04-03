@@ -72,35 +72,20 @@
         <geometry>
           <cylinder radius="${radius}" length="${length}"/>
         </geometry>
-        <material name="">
-          <color rgba="${color}"/>
-        </material>
+        <material name="${color}"/>
       </visual>
     </link>
   </xacro:macro>
 
   <!-- Box link Macro -->
-  <xacro:macro name="m_link_box" params="name color origin_xyz origin_rpy size mass ixx ixy ixz iyy iyz izz">
+  <xacro:macro name="m_link_box" params="name color origin_xyz origin_rpy size">
     <link name="${name}">
-      <inertial>
-        <mass value="${mass}"/>
-        <origin rpy="${origin_rpy}" xyz="${origin_xyz}"/>
-        <inertia ixx="${ixx}" ixy="${ixy}" ixz="${ixz}" iyy="${iyy}" iyz="${iyz}" izz="${izz}"/>
-      </inertial>
-      <collision>
-        <origin rpy="${origin_rpy}" xyz="${origin_xyz}"/>
-        <geometry>
-          <box size="${size}"/>
-        </geometry>
-      </collision>
       <visual>
         <origin rpy="${origin_rpy}" xyz="${origin_xyz}"/>
         <geometry>
           <box size="${size}"/>
         </geometry>
-        <material name="">
-          <color rgba="${color}"/>
-        </material>
+        <material name="${color}"/>
       </visual>
     </link>
   </xacro:macro>
@@ -124,9 +109,7 @@
         <geometry>
             <mesh filename="${meshfile}" scale="${meshscale}"/>
         </geometry>
-        <material name="">
-            <color rgba="${color}"/>
-        </material>
+        <material name="${color}"/>
       </visual>
     </link>
   </xacro:macro>
