@@ -4,39 +4,51 @@
   <xacro:property name="r_link_01_name" value="chassis_link"/>
 
   <!-- Color parameters -->
-  <xacro:property name="Red_Value" value="${204/255} ${0.0/255} ${0.0/255} ${255/255}"/>
-  <xacro:property name="Green_Value" value="${0.0/255} ${204/255} ${0.0/255} ${255/255}"/>
-  <xacro:property name="Blue_Value" value="${0.0/255} ${0.0/255} ${204/255} ${255/255}"/>
-  <xacro:property name="Black_Value" value="${0.0/255} ${0.0/255} ${0.0/255} ${255/255}"/>
-  <xacro:property name="White_Value" value="${255/255} ${255/255} ${255/255} ${255/255}"/>
-
-  <xacro:macro name="Red">
+  <xacro:macro name="red">
     <material name="">
-      <color rgba="${Red_Value}"/>
+      <color rgba="${204/255} ${0.0/255} ${0.0/255} ${255/255}"/>
     </material>
   </xacro:macro>
 
-  <xacro:macro name="Green">
+  <xacro:macro name="green">
     <material name="">
-      <color rgba="${Green_Value}"/>
+      <color rgba="${0.0/255} ${204/255} ${0.0/255} ${255/255}"/>
     </material>
   </xacro:macro>
 
-  <xacro:macro name="Blue">
+  <xacro:macro name="blue">
     <material name="">
-      <color rgba="${Blue_Value}"/>
+      <color rgba="${0.0/255} ${0.0/255} ${204/255} ${255/255}"/>
     </material>
   </xacro:macro>
 
-  <xacro:macro name="Black">
+  <xacro:macro name="black">
     <material name="">
-      <color rgba="${Black_Value}"/>
+      <color rgba="${0.0/255} ${0.0/255} ${0.0/255} ${255/255}"/>
     </material>
   </xacro:macro>
 
-  <xacro:macro name="White">
+  <xacro:macro name="white">
     <material name="">
-      <color rgba="${White_Value}"/>
+      <color rgba="${255/255} ${255/255} ${255/255} ${255/255}"/>
+    </material>
+  </xacro:macro>
+
+  <xacro:macro name="gray">
+    <material name="">
+      <color rgba="${178.5/255} ${178.5/255} ${178.5/255} ${255/255}"/>
+    </material>
+  </xacro:macro>
+
+  <xacro:macro name="darkgray">
+    <material name="">
+      <color rgba="${76.5/255} ${76.5/255} ${76.5/255} ${255/255}"/>
+    </material>
+  </xacro:macro>
+
+  <xacro:macro name="yellow">
+    <material name="">
+      <color rgba="${204/255} ${204/255} ${204/255} ${255/255}"/>
     </material>
   </xacro:macro>
 
