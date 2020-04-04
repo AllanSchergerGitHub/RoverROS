@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+
+<!-- rover_gazebo_control.launch
+
+Use Gazebo to simulate a rover with Ackermann steering.
+
+Arguments:
+  namespace (string, default: rover)
+    rover namespace.
+  world_name (string, default: worlds/empty.world)
+      Gazebo world name.
+  cmd_timeout (double, default: 0.5)
+      Command timeout passed to the ackermann_controller node.
+  x (double, default: 0.0)
+  y (double, default: 0.0)
+  z (double, default: 0.1)
+  roll (double, default: 0.0)
+  pitch (double, default: 0.0)
+  yaw (double, default: 0.0)
+      Vehicle pose. x, y, and z are measured in meters. roll, pitch, and yaw
+      are measured in radians.
+-->
+
+<launch>
+  <!-- Gazebo parameters -->
+  <arg name="namespace" default="rover"/>
+  <arg name="world_name" default="worlds/empty.world"/>
+  <arg name="cmd_timeout" default="0.5"/>
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+
+  <!-- rover initial pose -->
+  <arg name="x" default="0.0"/>
+  <arg name="y" default="0.0"/>
+  <arg name="z" default="0.0"/>
+  <arg name="roll" default="0.0"/>
+  <arg name="pitch" default="0.0"/>
+  <arg name="yaw" default="0.0"/>
+
+  <include file="$(find rover_desc_pkg)/launch/rover.launch">
+    <arg name="namespace" value="$(arg namespace)"/>
+  </include>
+
+  <group ns="$(arg namespace)">
+    <!-- Create an empty world. -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="paused" default="$(arg paused)"/>
+        <arg name="use_sim_time" default="$(arg use_sim_time)"/>
+        <arg name="gui" default="$(arg gui)"/>
+        <arg name="headless" default="$(arg headless)"/>
+        <arg name="debug" default="$(arg debug)"/>
+    </include>
+
+    <!-- Spawn the rover. -->
+    <node name="rover_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+          args="-urdf -param robot_description -model rover
+                -gazebo_namespace /$(arg namespace)/gazebo
+                -x $(arg x) -y $(arg y) -z $(arg z)
+                -R $(arg roll) -P $(arg pitch) -Y $(arg yaw)"/>
+
+    <!-- Load the joint controllers. One of these publishes the joint states to joint_states. -->
+    <node name="ctrlr_spawner" pkg="controller_manager" type="spawner"
+          args="$(find rover_gazebo_control)/config/rover_joint_ctrlr_params.yaml"/>
+
+    <!-- Control the steering and wheel joints. -->
+    <!--
+    <node name="rover_controller" pkg="rover_gazebo_control" type="rover_controller">
+      <param name="cmd_timeout" value="$(arg cmd_timeout)"/>
+      <rosparam file="$(find rover_gazebo_control)/config/rover_ackermann_ctrlr_params.yaml" command="load"/>
+    </node>
+    -->
+  </group>
+</launch>
