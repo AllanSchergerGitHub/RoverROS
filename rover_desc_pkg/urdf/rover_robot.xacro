@@ -51,8 +51,6 @@
 
   <!-- Rover -->
   <gazebo>
-    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-      <robotNamespace>/rover</robotNamespace>
-    </plugin>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so"/>
   </gazebo>
 </robot>
