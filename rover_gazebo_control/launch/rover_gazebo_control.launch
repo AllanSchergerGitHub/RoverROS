@@ -27,7 +27,7 @@ Arguments:
   <arg name="world_name" default="worlds/empty.world"/>
   <arg name="cmd_timeout" default="0.5"/>
   <arg name="paused" default="false"/>
-  <arg name="use_sim_time" default="true"/>
+  <arg name="use_sim_time" default="false"/>
   <arg name="gui" default="true"/>
   <arg name="headless" default="false"/>
   <arg name="debug" default="false"/>
@@ -66,11 +66,9 @@ Arguments:
           args="$(find rover_gazebo_control)/config/rover_joint_ctrlr_params.yaml"/>
 
     <!-- Control the steering and wheel joints. -->
-    <!--
-    <node name="rover_controller" pkg="rover_gazebo_control" type="rover_controller">
+    <node name="rover_controller" pkg="rover_gazebo_control" type="rover_controller.py">
       <param name="cmd_timeout" value="$(arg cmd_timeout)"/>
       <rosparam file="$(find rover_gazebo_control)/config/rover_ackermann_ctrlr_params.yaml" command="load"/>
     </node>
-    -->
   </group>
 </launch>
