@@ -87,7 +87,7 @@ from std_msgs.msg import Float64
 from controller_manager_msgs.srv import ListControllers
 
 
-class _RoverCtrlr(object):
+class _RoverCtrlr:
     """
     Rover Controller
 
@@ -96,9 +96,6 @@ class _RoverCtrlr(object):
     """
 
     def __init__(self):
-        # Initialize this controller.
-        rospy.init_node('rover_controller')
-
         # Parameters
         # Wheels
         (front_left_steer_link_name, front_left_steer_ctrlr_name,
@@ -110,11 +107,12 @@ class _RoverCtrlr(object):
         (rear_left_link_name, rear_left_wheel_ctrlr_name,
          self._rear_left_inv_circ) = \
             self._get_rear_wheel_params("left")
-        (rear_right_link_name, rear_right_wheel_ctrlr_name,
+        (self._rear_right_link_name, rear_right_wheel_ctrlr_name,
          self._rear_right_inv_circ) = \
             self._get_rear_wheel_params("right")
 
-        list_ctrlrs = rospy.ServiceProxy("controller_manager/list_controllers", ListControllers)
+        list_ctrlrs = rospy.ServiceProxy(
+            "controller_manager/list_controllers", ListControllers)
         list_ctrlrs.wait_for_service()
 
         # Command Timeout
@@ -149,8 +147,8 @@ class _RoverCtrlr(object):
         self._accel = 0.0          # Acceleration
 
         self._last_steer_ang = 0.0  # Last steering angle
-        self._theta_left = 0.0      # Left steering joint angle
-        self._theta_right = 0.0     # Right steering joint angle
+        self._left_theta = 0.0      # Left steering joint angle
+        self._right_theta = 0.0     # Right steering joint angle
 
         self._last_speed = 0.0
         self._last_accel_limit = 0.0  # Last acceleration limit
@@ -190,12 +188,11 @@ class _RoverCtrlr(object):
             _create_wheel_cmd_pub(list_ctrlrs, rear_right_wheel_ctrlr_name)
 
         self._ackermann_cmd_sub = \
-            rospy.subscriber("ackermann_cmd", AckermannDrive,
-                             self.ackermann_cmd_cd, queue_size=1)
+            rospy.Subscriber("ackermann_cmd", AckermannDrive,
+                             self.ackermann_cmd_cb, queue_size=1)
 
     def spin(self):
         """Control the rover."""
-
         last_time = rospy.get_time()
         while not rospy.is_shutdown():
             t = rospy.get_time()
@@ -216,8 +213,6 @@ class _RoverCtrlr(object):
                 steer_ang_changed, center_y = \
                     self._control_steering(steer_ang, steer_ang_vel, delta_t)
                 self._control_wheels(speed, accel, delta_t, steer_ang_changed, center_y)
-
-                # Publish the steering and wheel joint commands.
 
             # Publish the steering and wheel joint commands.
             self._front_left_steer_cmd_pub.publish(self._left_theta)
@@ -252,7 +247,7 @@ class _RoverCtrlr(object):
         # Get front wheel parameters. Return a tuple containing the steering
         # link name, steering controller name, wheel controller name (or None),
         # and inverse of the circumference.
-        prefix = "~" + "_front_" + side + "_wheel/"
+        prefix = "~" + "front_" + side + "_wheel/"
         steer_link_name = rospy.get_param(prefix + "steering_link_name",
                                           side + "_steering_link")
         steer_ctrlr_name = rospy.get_param(prefix + "steering_ctrlr_name",
@@ -263,7 +258,7 @@ class _RoverCtrlr(object):
     def _get_rear_wheel_params(self, side):
         # Get rear wheel parameters. Return a tuple containing the link name,
         # wheel controller name, and inverse of the circumference.
-        prefix = "~" + "_rear_" + side + "_wheel/"
+        prefix = "~" + "rear_" + side + "_wheel/"
         link_name = rospy.get_param(prefix + "link_name", side + "_wheel")
         wheel_ctrlr_name, inv_circ = self._get_common_wheel_params(prefix)
         return link_name, wheel_ctrlr_name, inv_circ
@@ -272,7 +267,7 @@ class _RoverCtrlr(object):
         # Get parameters used by the front and rear wheels. Return a tuple
         # containing the axle controller name (or None) and the inverse of
         # the circumference.
-        wheel_ctrlr_name = rospy.get_param(prefix + "wheel_controller_name",
+        wheel_ctrlr_name = rospy.get_param(prefix + "wheel_ctrlr_name",
                                            None)
         try:
             dia = float(rospy.get_param(prefix + "diameter",
@@ -378,15 +373,13 @@ def _create_wheel_cmd_pub(list_ctrlrs, wheel_ctrlr_name):
     # Create a wheel command publisher.
     if not wheel_ctrlr_name:
         return None
-    return _create_cmd_pub(list_ctrlrs + "/command", Float64, queue_size=4)
-    rospy.loginfo(list_ctrlrs)
+    return _create_cmd_pub(list_ctrlrs, wheel_ctrlr_name)
 
 
 def _create_cmd_pub(list_ctrlrs, ctrlr_name):
     # Create a command publisher.
     _wait_for_ctrlr(list_ctrlrs, ctrlr_name)
     return rospy.Publisher(ctrlr_name + "/command", Float64, queue_size=1)
-    rospy.loginfo(ctrlr_name)
 
 
 def _get_steer_ang(phi):
@@ -398,5 +391,6 @@ def _get_steer_ang(phi):
 
 # main
 if __name__ == "__main__":
-    ctrlr = _RoverCtrlr()
-    ctrlr.spin()
+    rospy.init_node('rover_controller')
+    controller = _RoverCtrlr()
+    controller.spin()
