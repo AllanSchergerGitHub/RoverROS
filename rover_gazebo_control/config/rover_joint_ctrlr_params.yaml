@@ -19,18 +19,18 @@ front_left_steering_ctrlr:
   pid: {p: 100.0, i: 0.01, d: 10.0}
 
 front_right_wheel_ctrlr:
-  type: effort_controllers/JointVelocityController
   joint: front_right_steer__front_right_wheel
+  type: effort_controllers/JointVelocityController
   pid: {p: 100.0, i: 0.01, d: 10.0}
 front_left_wheel_ctrlr:
-  type: effort_controllers/JointVelocityController
   joint: front_left_steer__front_left_wheel
+  type: effort_controllers/JointVelocityController
   pid: {p: 100.0, i: 0.01, d: 10.0}
 rear_right_wheel_ctrlr:
-  type: effort_controllers/JointVelocityController
   joint: rear_right_steer__rear_right_wheel
+  type: effort_controllers/JointVelocityController
   pid: {p: 100.0, i: 0.01, d: 10.0}
 rear_left_wheel_ctrlr:
-  type: effort_controllers/JointVelocityController
   joint: rear_left_steer__rear_left_wheel
+  type: effort_controllers/JointVelocityController
   pid: {p: 100.0, i: 0.01, d: 10.0}
