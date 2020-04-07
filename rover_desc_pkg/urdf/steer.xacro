@@ -58,17 +58,7 @@
                          axis_xyz="0 0 1"
                          origin_rpy="0 0 0" origin_xyz="${steer_x} ${steer_y} ${steer_z}"
                          parent="${parent}" child="${fr}_${lr}_steer"
-                         limit_e="100" limit_l="-${M_PI/2}" limit_u="${M_PI/2}" limit_v="100"/>
+                         limit_e="100" limit_l="-${5*M_PI/12}" limit_u="${5*M_PI/12}" limit_v="100"/>
     </xacro:if>
-
-    <!-- Transmission is important to link the joints and the controller -->
-    <!-- <transmission name="${fr}_${lr}_steer_joint_trans">
-      <type>transmission_interface/SimpleTransmission</type>
-      <joint name="${fr}_${lr}_steer_joint"/>
-      <actuator name="${fr}_${lr}_steer_joint_motor">
-          <hardwareInterface>EffortJointInterface</hardwareInterface>
-          <mechanicalReduction>1</mechanicalReduction>
-      </actuator>
-    </transmission> -->
   </xacro:macro>
 </robot>
