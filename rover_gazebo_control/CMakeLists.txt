@@ -9,6 +9,7 @@ project(rover_gazebo_control)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   ackermann_msgs
+  geometry_msgs
   rospy
   rover_desc_pkg
   std_msgs
