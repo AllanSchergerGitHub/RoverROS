@@ -82,7 +82,7 @@ from math import pi
 import rospy
 import tf
 
-from ackermann_msgs.msg import AckermannDrive
+from ackermann_msgs.msg import AckermannDriveStamped
 from std_msgs.msg import Float64
 from controller_manager_msgs.srv import ListControllers
 
@@ -117,7 +117,7 @@ class _RoverCtrlr:
 
         # Command Timeout
         try:
-            self._cmd_timeout = float(rospy.get_param("~cmd_timeout", self._DEF_CMD_TIMEOUT))
+            self._cmd_timeout = float(rospy.get_param("~cmd_timeout"))
         except Exception:
             rospy.logwarn("The specified command timeout value is invalid."
                           "Instead, the default timeout values will be used.")
@@ -125,7 +125,7 @@ class _RoverCtrlr:
 
         # Publishing frequency
         try:
-            pub_freq = float(rospy.get_param("~publishing_frequency", self._DEF_PUB_FREQ))
+            pub_freq = float(rospy.get_param("~publish_frequency"))
             if pub_freq <= 0.0:
                 raise ValueError()
         except Exception:
@@ -172,7 +172,12 @@ class _RoverCtrlr:
         self._inv_wheelbase = 1 / self._wheelbase   # Inverse of _wheelbase
         self._wheelbase_sqr = self._wheelbase ** 2
 
-        # Publishers and Subscribers
+        # Set wheelbase as a parameter.
+        rospy.set_param("wheelbase", float(self._wheelbase))
+        rospy.loginfo("Wheelbase parameter is: %s", "wheelbase")
+        rospy.loginfo("Wheelbase value is: %f", float(self._wheelbase))
+
+        # Publishers
         self._front_left_steer_cmd_pub = \
             _create_cmd_pub(list_ctrlrs, front_left_steer_ctrlr_name)
         self._front_right_steer_cmd_pub = \
@@ -187,46 +192,50 @@ class _RoverCtrlr:
         self._rear_right_wheel_cmd_pub = \
             _create_wheel_cmd_pub(list_ctrlrs, rear_right_wheel_ctrlr_name)
 
+        # Subscriber
         self._ackermann_cmd_sub = \
-            rospy.Subscriber("ackermann_cmd", AckermannDrive,
+            rospy.Subscriber("ackermann_cmd", AckermannDriveStamped,
                              self.ackermann_cmd_cb, queue_size=1)
 
     def spin(self):
         """Control the rover."""
         last_time = rospy.get_time()
-        while not rospy.is_shutdown():
-            t = rospy.get_time()
-            delta_t = t - last_time
-            last_time = t
+        try:
+            while not rospy.is_shutdown():
+                t = rospy.get_time()
+                delta_t = t - last_time
+                last_time = t
 
-            if (self._cmd_timeout > 0.0 and t - self._last_cmd_time > self._cmd_timeout):
-                # Too much time has elapsed since the last command. Stop the rover.
-                steer_ang_changed, center_y = \
-                    self._control_steering(self._last_steer_ang, 0.0, 0.001)
-                self._control_wheels(0.0, 0.0, 0.0, steer_ang_changed, center_y)
-            elif delta_t > 0.0:
-                with self._ackermann_cmd_lock:
-                    steer_ang = self._steer_ang
-                    steer_ang_vel = self._steer_ang_vel
-                    speed = self._speed
-                    accel = self._accel
-                steer_ang_changed, center_y = \
-                    self._control_steering(steer_ang, steer_ang_vel, delta_t)
-                self._control_wheels(speed, accel, delta_t, steer_ang_changed, center_y)
+                if (self._cmd_timeout > 0.0 and t - self._last_cmd_time > self._cmd_timeout):
+                    # Too much time has elapsed since the last command. Stop the rover.
+                    steer_ang_changed, center_y = \
+                        self._control_steering(self._last_steer_ang, 0.0, 0.001)
+                    self._control_wheels(0.0, 0.0, 0.0, steer_ang_changed, center_y)
+                elif delta_t > 0.0:
+                    with self._ackermann_cmd_lock:
+                        steer_ang = self._steer_ang
+                        steer_ang_vel = self._steer_ang_vel
+                        speed = self._speed
+                        accel = self._accel
+                    steer_ang_changed, center_y = \
+                        self._control_steering(steer_ang, steer_ang_vel, delta_t)
+                    self._control_wheels(speed, accel, delta_t, steer_ang_changed, center_y)
 
-            # Publish the steering and wheel joint commands.
-            self._front_left_steer_cmd_pub.publish(self._left_theta)
-            self._front_right_steer_cmd_pub.publish(self._right_theta)
-            if self._front_left_wheel_cmd_pub:
-                self._front_left_wheel_cmd_pub.publish(self._front_left_ang_vel)
-            if self._front_right_wheel_cmd_pub:
-                self._front_right_wheel_cmd_pub.publish(self._front_right_ang_vel)
-            if self._rear_left_wheel_cmd_pub:
-                self._rear_left_wheel_cmd_pub.publish(self._rear_left_ang_vel)
-            if self._rear_right_wheel_cmd_pub:
-                self._rear_right_wheel_cmd_pub.publish(self._rear_right_ang_vel)
+                # Publish the steering and wheel joint commands.
+                self._front_left_steer_cmd_pub.publish(self._left_theta)
+                self._front_right_steer_cmd_pub.publish(self._right_theta)
+                if self._front_left_wheel_cmd_pub:
+                    self._front_left_wheel_cmd_pub.publish(self._front_left_ang_vel)
+                if self._front_right_wheel_cmd_pub:
+                    self._front_right_wheel_cmd_pub.publish(self._front_right_ang_vel)
+                if self._rear_left_wheel_cmd_pub:
+                    self._rear_left_wheel_cmd_pub.publish(self._rear_left_ang_vel)
+                if self._rear_right_wheel_cmd_pub:
+                    self._rear_right_wheel_cmd_pub.publish(self._rear_right_ang_vel)
 
-            self._sleep_timer.sleep()
+                self._sleep_timer.sleep()
+        except rospy.ROSInterruptException as e:
+            print(e)
 
     def ackermann_cmd_cb(self, ackermann_cmd):
         """
@@ -238,10 +247,10 @@ class _RoverCtrlr:
         """
         self._last_cmd_time = rospy.get_time()
         with self._ackermann_cmd_lock:
-            self._steer_ang = ackermann_cmd.steering_angle
-            self._steer_ang_vel = ackermann_cmd.steering_angle_velocity
-            self._speed = ackermann_cmd.speed
-            self._accel = ackermann_cmd.acceleration
+            self._steer_ang = ackermann_cmd.drive.steering_angle
+            self._steer_ang_vel = ackermann_cmd.drive.steering_angle_velocity
+            self._speed = ackermann_cmd.drive.speed
+            self._accel = ackermann_cmd.drive.acceleration
 
     def _get_front_wheel_params(self, side):
         # Get front wheel parameters. Return a tuple containing the steering
