@@ -5,7 +5,7 @@
 import math
 import rospy
 from geometry_msgs.msg import Twist
-from ackermann_msgs.msg import AckermannDriveStamped
+from ackermann_msgs.msg import AckermannDrive
 
 
 def convert_trans_rot_vel_to_steering_angle(v, omega, wheelbase):
@@ -25,11 +25,13 @@ def cmd_callback(data):
     v = data.linear.x
     steering = convert_trans_rot_vel_to_steering_angle(v, data.angular.z, wheelbase)
 
-    msg = AckermannDriveStamped()
-    msg.header.stamp = rospy.Time.now()
-    msg.header.frame_id = frame_id
-    msg.drive.steering_angle = steering
-    msg.drive.speed = v
+    msg = AckermannDrive()
+    # msg.header.stamp = rospy.Time.now()
+    # msg.header.frame_id = frame_id
+    # msg.drive.steering_angle = steering
+    # msg.drive.speed = v
+    msg.steering_angle = steering
+    msg.speed = v
 
     pub.publish(msg)
 
@@ -52,7 +54,7 @@ if __name__ == '__main__':
             wheelbase = _wheelbase
 
         rospy.Subscriber(twist_cmd_topic, Twist, cmd_callback, queue_size=1)
-        pub = rospy.Publisher(ackermann_cmd_topic, AckermannDriveStamped, queue_size=1)
+        pub = rospy.Publisher(ackermann_cmd_topic, AckermannDrive, queue_size=1)
 
         rospy.loginfo("Node 'cmd_vel_to_ackermann_drive' started.\nListening to % s.\nPublishing to %s.\nFrame id: %s, \nWheelbase: %f",
                       "/cmd_vel", ackermann_cmd_topic, frame_id, wheelbase)
