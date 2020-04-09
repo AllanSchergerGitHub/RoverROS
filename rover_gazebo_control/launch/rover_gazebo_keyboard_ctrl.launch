@@ -20,7 +20,10 @@ Arguments:
   </include>
 
   <!-- Keyboard control node. -->
-  <node name="teleop" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen"/>
+  <node name="teleop" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py">
+    <param name="speed" value="0.5"/>
+    <param name="turn" value="0.05"/>
+  </node>
 
   <!-- Node to convert /cmd_vel to /ackermann_command -->
   <node name="cmd_vel_to_ackermann_drive" pkg="rover_gazebo_control"
