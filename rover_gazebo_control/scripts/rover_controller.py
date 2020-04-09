@@ -82,7 +82,7 @@ from math import pi
 import rospy
 import tf
 
-from ackermann_msgs.msg import AckermannDriveStamped
+from ackermann_msgs.msg import AckermannDrive
 from std_msgs.msg import Float64
 from controller_manager_msgs.srv import ListControllers
 
@@ -174,8 +174,6 @@ class _RoverCtrlr:
 
         # Set wheelbase as a parameter.
         rospy.set_param("wheelbase", float(self._wheelbase))
-        rospy.loginfo("Wheelbase parameter is: %s", "wheelbase")
-        rospy.loginfo("Wheelbase value is: %f", float(self._wheelbase))
 
         # Publishers
         self._front_left_steer_cmd_pub = \
@@ -194,7 +192,7 @@ class _RoverCtrlr:
 
         # Subscriber
         self._ackermann_cmd_sub = \
-            rospy.Subscriber("ackermann_cmd", AckermannDriveStamped,
+            rospy.Subscriber("ackermann_cmd", AckermannDrive,
                              self.ackermann_cmd_cb, queue_size=1)
 
     def spin(self):
@@ -247,10 +245,10 @@ class _RoverCtrlr:
         """
         self._last_cmd_time = rospy.get_time()
         with self._ackermann_cmd_lock:
-            self._steer_ang = ackermann_cmd.drive.steering_angle
-            self._steer_ang_vel = ackermann_cmd.drive.steering_angle_velocity
-            self._speed = ackermann_cmd.drive.speed
-            self._accel = ackermann_cmd.drive.acceleration
+            self._steer_ang = ackermann_cmd.steering_angle
+            self._steer_ang_vel = ackermann_cmd.steering_angle_velocity
+            self._speed = ackermann_cmd.speed
+            self._accel = ackermann_cmd.acceleration
 
     def _get_front_wheel_params(self, side):
         # Get front wheel parameters. Return a tuple containing the steering
@@ -318,12 +316,10 @@ class _RoverCtrlr:
         steer_ang_changed = theta != self._last_steer_ang
         if steer_ang_changed:
             self._last_steer_ang = theta
-            self._theta_left = \
-                _get_steer_ang(math.atan(self._inv_wheelbase *
-                                         (center_y - self._joint_dist_div_2)))
-            self._theta_right = \
-                _get_steer_ang(math.atan(self._inv_wheelbase *
-                                         (center_y - self._joint_dist_div_2)))
+            self._left_theta = _get_steer_ang(math.atan(self._inv_wheelbase *
+                                                        (center_y - self._joint_dist_div_2)))
+            self._right_theta = _get_steer_ang(math.atan(self._inv_wheelbase *
+                                                         (center_y - self._joint_dist_div_2)))
 
         return steer_ang_changed, center_y
 
