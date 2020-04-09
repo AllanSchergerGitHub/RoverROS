@@ -12,6 +12,7 @@ Arguments:
 
 <launch>
   <arg name="namespace" default="rover"/>
+  <arg name="node_start_delay" default="5"/>
 
   <!-- Launch the Gazebo simulation of the rover. -->
   <include file="$(find rover_gazebo_control)/launch/rover_gazebo_control.launch">
@@ -23,5 +24,6 @@ Arguments:
 
   <!-- Node to convert /cmd_vel to /ackermann_command -->
   <node name="cmd_vel_to_ackermann_drive" pkg="rover_gazebo_control"
-        type="cmd_vel_to_ackermann_drive.py" output="screen" ns="$(arg namespace)"/>
+        type="cmd_vel_to_ackermann_drive.py" output="screen" ns="$(arg namespace)"
+        launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@'"/>
 </launch>
