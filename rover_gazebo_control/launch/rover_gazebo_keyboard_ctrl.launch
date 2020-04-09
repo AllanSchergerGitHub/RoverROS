@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<!-- rover_gazebo_keyboard_ctrl.launch
+
+Use Gazebo to simulate and control a rover with Ackermann steering
+using keyboard commands.
+
+Arguments:
+  namespace (string, default: rover)
+    rover namespace.
+-->
+
+<launch>
+  <arg name="namespace" default="rover"/>
+
+  <!-- Launch the Gazebo simulation of the rover. -->
+  <include file="$(find rover_gazebo_control)/launch/rover_gazebo_control.launch">
+    <arg name="namespace" value="$(arg namespace)"/>
+  </include>
+
+  <!-- Keyboard control node. -->
+  <node name="teleop" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen"/>
+
+  <!-- Node to convert /cmd_vel to /ackermann_command -->
+  <node name="cmd_vel_to_ackermann_drive" pkg="rover_gazebo_control"
+        type="cmd_vel_to_ackermann_drive.py" output="screen" ns="$(arg namespace)"/>
+</launch>
