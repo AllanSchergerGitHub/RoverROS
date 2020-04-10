@@ -18,13 +18,12 @@ from geometry_msgs.msg import Twist
 
 
 class SetVelocity():
-    def __init__(self, min_vel, max_vel, num_steps):
-        assert min_vel > 0 and max_vel > 0 and num_steps > 0
-        self._min_vel = min_vel
-        self._max_vel = max_vel
+    def __init__(self, velocity, num_steps):
+        assert velocity != 0 and num_steps > 0
+        self._velocity = velocity
         self._num_steps = num_steps
         if self._num_steps > 1:
-            self._step_incr = (max_vel - min_vel) / (self._num_steps - 1)
+            self._step_incr = (self._velocity) / (self._num_steps - 1)
         else:
             # If num_steps is one, we always use the minimum velocity.
             self._step_incr = 0
@@ -38,7 +37,7 @@ class SetVelocity():
             return 0
 
         assert step > 0 and step <= self._num_steps
-        max_value = self._min_vel + self._step_incr * (step - 1)
+        max_value = self._step_incr * (step - 1)
         return value * max_value
 
 
@@ -83,29 +82,20 @@ class TextWindow():
 class KeyTeleop():
     _interface = None
 
-    _linear = None
-    _angular = None
-
     def __init__(self, interface):
         self._interface = interface
-        _namespace = rospy.get_param('namespace', "/")
-        self._pub_cmd = rospy.Publisher(_namespace + 'key_val', Twist, queue_size=1)
+        namespace = rospy.get_namespace()
+        self._pub_cmd = rospy.Publisher(namespace + 'key_val', Twist, queue_size=1)
 
-        self._hz = rospy.get_param('publish_frequency', 4)
+        self._hz = rospy.get_param('~hz', 4)
 
-        self._num_steps = rospy.get_param('steps', 4)
+        self._num_steps = rospy.get_param('~steps')
 
-        forward_min = rospy.get_param('lin_forward_min', 0.5)
-        forward_max = rospy.get_param('lin_forward_max', 1.0)
-        self._forward = SetVelocity(forward_min, forward_max, self._num_steps)
+        linear_vel = rospy.get_param('~linear_velocity', 1.0)
+        self._get_linear = SetVelocity(linear_vel, self._num_steps)
 
-        backward_min = rospy.get_param('lin_backward_min', 0.25)
-        backward_max = rospy.get_param('lin_backward_max', 0.5)
-        self._backward = SetVelocity(backward_min, backward_max, self._num_steps)
-
-        angular_min = rospy.get_param('ang_min', 0.7)
-        angular_max = rospy.get_param('ang_max', 1.2)
-        self._rotation = SetVelocity(angular_min, angular_max, self._num_steps)
+        angular_vel = rospy.get_param('~angular_velocity', 1.2)
+        self._get_rotation = SetVelocity(angular_vel, self._num_steps)
 
     def run(self):
         self._linear = 0
@@ -127,11 +117,8 @@ class KeyTeleop():
 
     def _get_twist(self, linear, angular):
         twist = Twist()
-        if linear >= 0:
-            twist.linear.x = self._forward(1.0, linear)
-        else:
-            twist.linear.x = self._backward(-1.0, -linear)
-        twist.angular.z = self._rotation(math.copysign(1, angular), abs(angular))
+        twist.linear.x = self._get_linear(math.copysign(1, linear), abs(linear))
+        twist.angular.z = self._get_rotation(math.copysign(1, angular), abs(angular))
         return twist
 
     def _key_pressed(self, keycode):
@@ -179,8 +166,9 @@ class KeyTeleop():
         twist = self._get_twist(self._linear, self._angular)
 
         self._interface.clear()
-        self._interface.write_line(2, 'Linear: %f, Angular: %f' %
-                                   (round(twist.linear.x, 3), round(twist.angular.z, 3)))
+        self._interface.write_line(2, 'Linear: %f, Angular: %f, Steps: %d' %
+                                   (round(twist.linear.x, 3), round(twist.angular.z, 3), self._num_steps))
+        # self._interface.write_line(2, 'Linear: %d, Angular: %d' % (self._linear, self._angular))
         self._interface.write_line(5, 'Use arrow keys to move, space to stop, q to exit.')
         self._interface.refresh()
 
