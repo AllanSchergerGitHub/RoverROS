@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot name="wheel" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <!-- Begin - Include -->
-  <xacro:include filename="$(find rover_desc_pkg)/urdf/robot_parameters.xacro"/>
+  <xacro:include filename="$(find rover_desc_pkg)/urdf/rover_parameters.xacro"/>
   <xacro:include filename="$(find rover_desc_pkg)/urdf/links_joints.xacro"/>
   <!-- End - Include -->
 
