@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- Begin - Include -->
+  <xacro:include filename="$(find rover_arm_desc_pkg)/urdf/arm_parameters.xacro"/>
+  <xacro:include filename="$(find rover_desc_pkg)/urdf/rover_parameters.xacro"/>
+  <xacro:include filename="$(find rover_desc_pkg)/urdf/links_joints.xacro"/>
+  <!-- End - Include -->
+
+  <!-- Begin - Robot Description -->
+  <!-- Chassis footprint -->
+  <xacro:m_link_box name="${a_link_00_name}"
+                    color="white"
+                    origin_rpy="0 0 0" origin_xyz="${chassis_length/2} -0.122 0.562"
+                    size="0.01 0.01 0.01"/>
+
+  <gazebo reference="${r_link_00_name}">
+    <material>Gazebo/White</material>
+  </gazebo>
+  <!-- End - Robot Description -->
+</robot>

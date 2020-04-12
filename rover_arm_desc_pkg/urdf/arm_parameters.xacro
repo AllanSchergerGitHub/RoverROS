@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:property name="a_link_00_name" value="arm_footprint"/>
+  <xacro:property name="a_link_01_name" value="arm_link_01"/>
+  <xacro:property name="a_link_02_name" value="arm_link_02"/>
+  <xacro:property name="a_link_03_name" value="arm_link_03"/>
+  <xacro:property name="a_link_04_name" value="arm_link_04"/>
+
+  <!-- All the units are in m-kg-s-radians unit system -->
+  <xacro:property name="M_PI" value="3.141592653"/>
+  <xacro:property name="DEG_TO_RAD" value="0.017453293"/>
+
+  <!-- Arm Link 01 dimensions -->
+  <xacro:property name="arm_link_01_length" value="1.016"/>
+  <xacro:property name="arm_link_01_width" value="0.6096"/>
+  <xacro:property name="arm_link_01_mass" value="5"/> <!-- in Kg -->
+
+  <!-- Arm Link 02 dimensions -->
+  <xacro:property name="arm_link_02_length" value="1.016"/>
+  <xacro:property name="arm_link_02_width" value="0.6096"/>
+  <xacro:property name="arm_link_02_mass" value="5"/> <!-- in Kg -->
+
+  <!-- Arm Link 03 dimensions -->
+  <xacro:property name="arm_link_03_length" value="1.016"/>
+  <xacro:property name="arm_link_03_width" value="0.6096"/>
+  <xacro:property name="arm_link_03_mass" value="5"/> <!-- in Kg -->
+
+  <!-- Arm Link 04 dimensions -->
+  <xacro:property name="arm_link_04_length" value="1.016"/>
+  <xacro:property name="arm_link_04_width" value="0.6096"/>
+  <xacro:property name="arm_link_04_mass" value="5"/> <!-- in Kg -->
+</robot>
