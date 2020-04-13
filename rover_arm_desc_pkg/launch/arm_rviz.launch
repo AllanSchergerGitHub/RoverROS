@@ -20,10 +20,6 @@ Arguments:
     <param name="rate" value="30.0"/>
   </node>
 
-  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" ns="$(arg namespace)">
-    <param name="rate" value="30.0"/>
-  </node>
-
   <include file="$(find rover_arm_desc_pkg)/launch/rviz.launch">
     <arg name="namespace" value="$(arg namespace)"/>
   </include>
