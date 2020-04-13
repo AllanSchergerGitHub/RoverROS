@@ -2,26 +2,17 @@
 <robot name="rover_arm" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <!-- Begin - Include -->
   <xacro:include filename="$(find rover_arm_desc_pkg)/urdf/arm_parameters.xacro"/>
+  <xacro:include filename="$(find rover_arm_desc_pkg)/urdf/arm_links.xacro"/>
   <xacro:include filename="$(find rover_desc_pkg)/urdf/rover_parameters.xacro"/>
   <xacro:include filename="$(find rover_desc_pkg)/urdf/links_joints.xacro"/>
   <!-- End - Include -->
 
   <!-- Begin - Robot Description -->
-  <!-- Chassis footprint -->
-  <xacro:m_link_box name="${a_link_00_name}"
-                    color="white"
-                    origin_rpy="0 0 0" origin_xyz="${chassis_length/2} -0.122 0.562"
-                    size="0.0001 0.0001 0.0001"/>
-
-  <gazebo reference="${r_link_00_name}">
-    <material>Gazebo/White</material>
-  </gazebo>
-
-  <!-- Link 01 -->
-  <xacro:m_link_cylinder name="${a_link_01_name}"
+  <!-- Arm footprint -->
+  <xacro:m_link_cylinder name="${a_link_00_name}"
                          color="gray"
                          origin_rpy="0 0 0"
-                         origin_xyz="0 0 0"
+                         origin_xyz="${chassis_length/2 + 0.02} -0.122 0.562"
                          radius="0.02"
                          length="0.2"
                          mass="1.0"
@@ -29,13 +20,46 @@
                          iyy="0.0001" iyz="0.0"
                          izz="0.0001"/>
 
-  <gazebo reference="${r_link_01_name}">
-    <material>Gazebo/Yellow</material>
+  <gazebo reference="${r_link_00_name}">
+    <material>Gazebo/White</material>
   </gazebo>
 
+  <!-- Arm Links -->
+  <xacro:arm_link name="${a_link_01_name}"
+                  parent="${a_link_00_name}"
+                  length="0.2"
+                  width="0.04"
+                  height="0.04"
+                  link_xyz="0 0 0"
+                  link_rpy="0 0 0"
+                  joint_xyz="${chassis_length/2 + 0.02} -0.122 0.562"
+                  joint_rpy="0 0 0"
+                  axis_xyz="0 0 1"
+                  lim_l="-${M_PI/2}"
+                  lim_u="${M_PI/2}"/>
+
+<xacro:arm_link name="${a_link_02_name}"
+                parent="${a_link_01_name}"
+                length="0.2"
+                width="0.04"
+                height="0.04"
+                link_xyz="0 0 0"
+                link_rpy="0 0 0"
+                joint_xyz="${0.2 + 0.09} 0 0"
+                joint_rpy="0 0 0"
+                axis_xyz="0 0 1"
+                lim_l="-${M_PI/2}"
+                lim_u="${M_PI/2}"/>
+
   <!-- Link 00 and Link 01 joint -->
-  <xacro:m_joint_fixed name="${a_link_00_name}__${a_link_01_name}"
+  <!-- <xacro:m_joint_fixed name="${a_link_00_name}__${a_link_01_name}"
                        origin_rpy="0 0 0" origin_xyz="0 0 0"
-                       parent="${a_link_00_name}" child="${a_link_01_name}"/>
+                       parent="${a_link_00_name}" child="${a_link_01_name}"/> -->
+  <!-- <xacro:m_joint_rev name="${a_link_00_name}__${a_link_01_name}_joint"
+                     axis_xyz="0 0 1"
+                     origin_rpy="0 0 0" origin_xyz="${chassis_length/2 + 0.02} -0.122 0.562"
+                     parent="${a_link_00_name}" child="${a_link_01_name}"
+                     limit_e="1000.0" limit_l="-${M_PI/2}" limit_u="${M_PI/2}" limit_v="1"
+                     dynamics_d="50" dynamics_f="1"/> -->
   <!-- End - Robot Description -->
 </robot>
