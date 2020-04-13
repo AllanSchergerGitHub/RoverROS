@@ -33,10 +33,11 @@
   </xacro:macro>
 
   <!-- revolute joint -->
-  <xacro:macro name="m_joint_rev" params="name axis_xyz origin_xyz origin_rpy parent child limit_e limit_l limit_u limit_v">
+  <xacro:macro name="m_joint_rev" params="name axis_xyz origin_xyz origin_rpy parent child limit_e limit_l limit_u limit_v dynamics_d dynamics_f">
     <joint name="${name}" type="revolute">
       <axis xyz="${axis_xyz}"/>
       <limit effort="${limit_e}" lower="${limit_l}" upper="${limit_u}" velocity="${limit_v}"/>
+      <dynamics damping="${dynamics_d}" friction="${dynamics_f}"/>
       <origin rpy="${origin_rpy}" xyz="${origin_xyz}"/>
       <parent link="${parent}"/>
       <child link="${child}"/>
