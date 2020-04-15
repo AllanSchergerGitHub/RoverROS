@@ -20,13 +20,13 @@
     </xacro:if>
 
     <xacro:m_link_mesh name="${fr}_${lr}_wheel"
-                       color="black"
+                       shape="cylinder"
                        origin_rpy="0 0 0"
                        origin_xyz="0 0 0"
-                       mass="${m}"
-                       ixx="${m*(3*r*r+h*h)/12}" ixy="0.0" ixz="0.0"
-                       iyy="${m*(3*r*r+h*h)/12}" iyz="0.0"
-                       izz="${m*r*r/2}"
+                       w="${r}"
+                       d="${r}"
+                       h="${h}"
+                       m="${m}"
                        meshfile="package://rover_desc_pkg/meshes/rover_wheel.dae"
                        meshscale="1 1 1"/>
 
