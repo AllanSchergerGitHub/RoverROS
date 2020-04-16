@@ -96,10 +96,4 @@
   <xacro:property name="steer_x_origin_to_wheel_x_origin" value="0.0317"/>
   <xacro:property name="steer_y_origin_to_wheel_y_origin" value="0.0"/>
   <xacro:property name="steer_z_origin_to_wheel_z_origin" value="0.4620"/>
-
-  <xacro:macro name="cylinder_inertia" params="m r h">
-    <intertia ixx="${m*(3*r*r+h*h)/12}" ixy="0.0" ixz="0.0"
-              iyy="${m*(3*r*r+h*h)/12}" iyz="0.0"
-              izz="${m*r*r/2}"/>
-  </xacro:macro>
 </robot>
