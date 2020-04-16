@@ -13,13 +13,12 @@
                        axis_rpy="${axis_rpy}" axis_xyz="${axis_xyz}"
                        origin_rpy="${joint_rpy}" origin_xyz="${joint_xyz}"
                        parent="${parent}" child="${name}"
-                       limit_e="1000.0" limit_l="${lim_l}" limit_u="${lim_u}" limit_v="1"
-                       dynamics_d="50" dynamics_f="1"/>
+                       limit_e="1000.0" limit_l="${lim_l}" limit_u="${lim_u}" limit_v="1"/>
 
     <!-- Link -->
     <xacro:if value="${type == 'cyl_iner'}">
       <xacro:m_link_cylinder_inertia name="${name}"
-                                     color="darkgray"
+                                     color="blue"
                                      origin_rpy="${link_rpy}"
                                      origin_xyz="${link_xyz}"
                                      r="${x_dim}"
@@ -29,7 +28,7 @@
 
     <xacro:if value="${type == 'box_iner'}">
       <xacro:m_link_box_inertia name="${name}"
-                                color="darkgray"
+                                color="blue"
                                 origin_rpy="${link_rpy}"
                                 origin_xyz="${link_xyz}"
                                 w="${x_dim}"
@@ -39,35 +38,19 @@
     </xacro:if>
 
     <xacro:if value="${type == 'mesh'}">
-      <xacro:m_link_mesh name="${name}"
-                         shape="box"
-                         origin_rpy="${link_rpy}"
-                         origin_xyz="${link_xyz}"
-                         w="${x_dim}"
-                         d="${y_dim}"
-                         h="${z_dim}"
-                         m="${m}"
-                         meshfile="${file}"
-                         meshscale="${scale}"/>
+      <xacro:m_link_mesh_box name="${name}"
+                             origin_rpy="${link_rpy}"
+                             origin_xyz="${link_xyz}"
+                             w="${x_dim}"
+                             d="${y_dim}"
+                             h="${z_dim}"
+                             m="${m}"
+                             meshfile="${file}"
+                             meshscale="${scale}"/>
     </xacro:if>
 
     <gazebo reference="${name}">
       <material>Gazebo/Silver</material>
     </gazebo>
-
-    <!-- fixed joint -->
-    <!--  <xacro:m_joint_fixed name="${name}__${name}_box_joint"
-                         origin_rpy="0 0 0" origin_xyz="0 0 0"
-                         parent="${name}" child="${name}_box"/> -->
-
-    <!-- Link Arm -->
-    <!-- <xacro:m_link_box name="${name}_box"
-                      color="white"
-                      origin_rpy="0 0 0" origin_xyz="${length/2 + 0.045} 0 0"
-                      size="${length} ${width} ${height}"/>
-
-    <gazebo reference="${name}_box">
-      <material>Gazebo/Silver</material>
-    </gazebo> -->
   </xacro:macro>
 </robot>
