@@ -16,21 +16,22 @@
 
   <gazebo reference="${r_link_00_name}">
     <material>Gazebo/White</material>
+    <turnGravityOff>false</turnGravityOff>
   </gazebo>
 
-  <xacro:m_link_mesh name="${r_link_01_name}"
-                     shape="box"
-                     origin_rpy="0 0 0"
-                     origin_xyz="0 0 ${wheel_radius + steer_z_origin_to_wheel_z_origin - chassis_z_origin_to_steer_z_origin}"
-                     m="${chassis_mass}"
-                     w="${chassis_width}"
-                     d="${chassis_length}"
-                     h="${chassis_height}"
-                     meshfile="package://rover_desc_pkg/meshes/rover_chassis.dae"
-                     meshscale="1 1 1"/>
+  <xacro:m_link_mesh_box name="${r_link_01_name}"
+                         origin_rpy="0 0 0"
+                         origin_xyz="0 0 ${wheel_radius + steer_z_origin_to_wheel_z_origin - chassis_z_origin_to_steer_z_origin}"
+                         m="${chassis_mass}"
+                         w="${chassis_width}"
+                         d="${chassis_length}"
+                         h="${chassis_height}"
+                         meshfile="package://rover_desc_pkg/meshes/rover_chassis.dae"
+                         meshscale="1 1 1"/>
 
   <gazebo reference="${r_link_01_name}">
     <material>Gazebo/Yellow</material>
+    <turnGravityOff>false</turnGravityOff>
   </gazebo>
 
   <xacro:m_joint_fixed name="${r_link_00_name}__${r_link_01_name}"

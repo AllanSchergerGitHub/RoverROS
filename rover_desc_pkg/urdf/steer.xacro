@@ -13,16 +13,14 @@
 
     <xacro:if value="${fr == 'rear'}">
       <xacro:property name="steer_x"
-                      value="${translateX * (world_x_origin_to_steer_x_origin + 0.063)}"
-                      scope="local"/>
+                      value="${translateX * (world_x_origin_to_steer_x_origin + 0.063)}" scope="local"/>
     </xacro:if>
 
     <!-- Decide steer mesh file based on its location -->
     <xacro:if value="${lr == 'right'}">
       <xacro:property name="mesh_file" value="package://rover_desc_pkg/meshes/rover_steer_r.dae"/>
       <xacro:property name="steer_z"
-                      value="${wheel_radius + steer_z_origin_to_wheel_z_origin + 0.0032}"
-                      scope="local"/>
+                      value="${wheel_radius + steer_z_origin_to_wheel_z_origin + 0.0032}" scope="local"/>
     </xacro:if>
     <xacro:if value="${lr == 'left'}">
       <xacro:property name="mesh_file" value="package://rover_desc_pkg/meshes/rover_steer_l.dae"/>
@@ -32,19 +30,19 @@
     </xacro:if>
 
     <!-- Link description -->
-    <xacro:m_link_mesh name="${fr}_${lr}_steer"
-                       shape="box"
-                       origin_rpy="0 0 0"
-                       origin_xyz="0 0 0"
-                       m="${steer_mass}"
-                       w="${steer_width}"
-                       d="${steer_length}"
-                       h="${steer_height}"
-                       meshfile="${mesh_file}"
-                       meshscale="1 1 1"/>
+    <xacro:m_link_mesh_box name="${fr}_${lr}_steer"
+                           origin_rpy="0 0 0"
+                           origin_xyz="0 0 0"
+                           m="${steer_mass}"
+                           w="${steer_width}"
+                           d="${steer_length}"
+                           h="${steer_height}"
+                           meshfile="${mesh_file}"
+                           meshscale="1 1 1"/>
 
     <gazebo reference="${fr}_${lr}_steer">
       <material>Gazebo/Grey</material>
+      <turnGravityOff>false</turnGravityOff>
     </gazebo>
 
     <!-- Joint description -->
@@ -60,8 +58,7 @@
                          origin_rpy="0 0 0" origin_xyz="${steer_x} ${steer_y} ${steer_z}"
                          parent="${parent}" child="${fr}_${lr}_steer"
                          limit_e="100" limit_l="-${5*M_PI/12}"
-                         limit_u="${5*M_PI/12}" limit_v="100"
-                         dynamics_d="50" dynamics_f="1"/>
+                         limit_u="${5*M_PI/12}" limit_v="100"/>
     </xacro:if>
   </xacro:macro>
 </robot>
