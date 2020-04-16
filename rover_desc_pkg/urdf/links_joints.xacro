@@ -33,11 +33,10 @@
   </xacro:macro>
 
   <!-- revolute joint -->
-  <xacro:macro name="m_joint_rev" params="name axis_xyz axis_rpy origin_xyz origin_rpy parent child limit_e limit_l limit_u limit_v dynamics_d dynamics_f">
+  <xacro:macro name="m_joint_rev" params="name axis_xyz axis_rpy origin_xyz origin_rpy parent child limit_e limit_l limit_u limit_v">
     <joint name="${name}" type="revolute">
       <axis rpy="axis_rpy" xyz="${axis_xyz}"/>
       <limit effort="${limit_e}" lower="${limit_l}" upper="${limit_u}" velocity="${limit_v}"/>
-      <dynamics damping="${dynamics_d}" friction="${dynamics_f}"/>
       <origin rpy="${origin_rpy}" xyz="${origin_xyz}"/>
       <parent link="${parent}"/>
       <child link="${child}"/>
@@ -132,22 +131,40 @@
     </link>
   </xacro:macro>
 
-  <!-- Mesh link Macro -->
-  <xacro:macro name="m_link_mesh" params="name shape origin_xyz origin_rpy meshfile meshscale m w d h">
+  <!-- Mesh link Macro Box -->
+  <xacro:macro name="m_link_mesh_box" params="name origin_xyz origin_rpy meshfile meshscale m w d h">
     <link name="${name}">
       <inertial>
         <mass value="${m}"/>
         <origin rpy="${origin_rpy}" xyz="${origin_xyz}"/>
-        <xacro:if value="${shape == 'box'}">
-          <inertia ixx="${m*(d*d+h*h)/12}" ixy="0" ixz="0"
-                   iyy="${m*(w*w+h*h)/12}" iyz="0"
-                   izz="${m*(w*w+d*d)/12}"/>
-        </xacro:if>
-        <xacro:if value="${shape == 'cylinder'}">
-          <inertia ixx="${m*(3*w*w+h*h)/12}" ixy="0.0" ixz="0.0"
-                   iyy="${m*(3*w*w+h*h)/12}" iyz="0.0"
-                   izz="${m*h*h/2}"/>
-        </xacro:if>
+        <inertia ixx="${m*(d*d+h*h)/12}" ixy="0" ixz="0"
+                 iyy="${m*(w*w+h*h)/12}" iyz="0"
+                 izz="${m*(w*w+d*d)/12}"/>
+      </inertial>
+      <collision>
+        <origin rpy="${origin_rpy}" xyz="${origin_xyz}"/>
+        <geometry>
+            <mesh filename="${meshfile}" scale="${meshscale}"/>
+        </geometry>
+      </collision>
+      <visual>
+        <origin rpy="${origin_rpy}" xyz="${origin_xyz}"/>
+        <geometry>
+            <mesh filename="${meshfile}" scale="${meshscale}"/>
+        </geometry>
+      </visual>
+    </link>
+  </xacro:macro>
+
+  <!-- Mesh link Macro Cylinder -->
+  <xacro:macro name="m_link_mesh_cyl" params="name origin_xyz origin_rpy meshfile meshscale m r l">
+    <link name="${name}">
+      <inertial>
+        <mass value="${m}"/>
+        <origin rpy="${origin_rpy}" xyz="${origin_xyz}"/>
+        <inertia ixx="${m*(3*r*l+r*l)/12}" ixy="0.0" ixz="0.0"
+                 iyy="${m*(3*r*r+l*l)/12}" iyz="0.0"
+                 izz="${m*l*l/2}"/>
       </inertial>
       <collision>
         <origin rpy="${origin_rpy}" xyz="${origin_xyz}"/>
