@@ -117,7 +117,7 @@
 
   <!-- Link 04 -->
   <xacro:arm_link name="${a_link_04_name}"
-                  type="box_iner"
+                  type="mesh"
                   parent="${a_link_03a_name}"
                   x_dim="${arm_link04_x}"
                   y_dim="${arm_link04_y}"
