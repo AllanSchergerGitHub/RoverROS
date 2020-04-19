@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 
 <!-- rviz.launch
-Launch RViz in the "rover" namespace.
+Launch RViz in the "arm" namespace.
 
 Arguments:
-  namespace(string, default: rover)
-    rover namespace.
+  namespace(string, default: arm)
+    arm namespace.
 -->
 
 <launch>

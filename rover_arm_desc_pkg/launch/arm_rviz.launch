@@ -4,8 +4,8 @@
 Use RViz to visualize a rover arm.
 
 Arguments:
-  namespace (string, default: rover)
-    rover namespace.
+  namespace (string, default: arm)
+    arm namespace.
 -->
 
 <launch>
