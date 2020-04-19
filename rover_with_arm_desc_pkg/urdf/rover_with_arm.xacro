@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<robot name="rover_with_arm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- Begin - Include -->
+  <xacro:include filename="$(find rover_desc_pkg)/urdf/rover_robot.xacro"/>
+  <xacro:include filename="$(find rover_arm_desc_pkg)/urdf/rover_arm.xacro"/>
+  <!-- End - Include -->
+
+  <link name="world"/>
+
+  <joint name="world_chassis_joint" type="fixed">
+      <parent link="world"/>
+      <child link = "chassis_footprint"/>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+  </joint>
+
+  <joint name="chassis_arm_joint" type="fixed">
+      <parent link="chassis_footprint"/>
+      <child link="arm_footprint"/>
+      <origin xyz="0.0 0.0 0..0" rpy="0.0 0.0 0.0"/>
+  </joint>
+</robot>
