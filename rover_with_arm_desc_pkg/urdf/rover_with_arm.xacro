@@ -5,7 +5,12 @@
   <xacro:include filename="$(find rover_arm_desc_pkg)/urdf/rover_arm.xacro"/>
   <!-- End - Include -->
 
-  <link name="world"/>
+  <!-- <link name="world">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <box size="0.0001 0.0001 0.0001" />
+    </geometry>
+  </link>
 
   <joint name="world_chassis_joint" type="fixed">
       <parent link="world"/>
@@ -17,5 +22,14 @@
       <parent link="chassis_footprint"/>
       <child link="arm_footprint"/>
       <origin xyz="0.0 0.0 0..0" rpy="0.0 0.0 0.0"/>
-  </joint>
+  </joint> -->
+
+  <!-- Using the models -->
+  <xacro:rover_robot name="rover">
+    <origin xyz="0.0 0.0 0..0" rpy="0.0 0.0 0.0"/>
+  </xacro:rover_robot>
+
+  <xacro:rover_arm name="arm">
+    <origin xyz="0.0 0.0 0..0" rpy="0.0 0.0 0.0"/>
+  </xacro:rover_arm>
 </robot>
