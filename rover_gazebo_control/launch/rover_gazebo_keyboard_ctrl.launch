@@ -12,6 +12,7 @@ Arguments:
 
 <launch>
   <arg name="namespace" default="rover"/>
+  <arg name="cmd_timeout" default="0.5"/>
   <arg name="node_start_delay" default="5"/>
   <arg name="publish_frequency" default="30.0"/>
   <arg name="linear_velocity" default="10.0"/>
@@ -21,6 +22,14 @@ Arguments:
   <include file="$(find rover_gazebo_control)/launch/rover_gazebo_control.launch">
     <arg name="namespace" value="$(arg namespace)"/>
   </include>
+
+  <!-- Control the steering and wheel joints. -->
+  <node name="rover_controller" pkg="rover_gazebo_control" type="rover_controller.py"
+        output="screen" ns="$(arg namespace)">
+    <param name="cmd_timeout" value="$(arg cmd_timeout)"/>
+    <param name="publish_frequency" value="$(arg publish_frequency)"/>
+    <rosparam file="$(find rover_gazebo_control)/config/rover_ackermann_ctrlr_params.yaml" command="load"/>
+  </node>
 
   <!-- Keyboard control node. -->
   <node name="rover_teleop" pkg="rover_gazebo_control" type="rover_teleop.py"
