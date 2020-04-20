@@ -8,13 +8,28 @@ Panels:
         - /Status1
         - /Grid1
         - /RobotModel1
-        - /RobotModel1/Status1
+        - /RobotModel1/Links1
+        - /RobotModel1/Links1/arm_footprint1
+        - /RobotModel1/Links1/arm_link_011
+        - /RobotModel1/Links1/arm_link_021
+        - /RobotModel1/Links1/arm_link_031
+        - /RobotModel1/Links1/arm_link_03a1
+        - /RobotModel1/Links1/arm_link_041
+        - /RobotModel1/Links1/chassis_footprint1
+        - /RobotModel1/Links1/chassis_link1
+        - /RobotModel1/Links1/front_left_steer1
+        - /RobotModel1/Links1/front_left_wheel1
+        - /RobotModel1/Links1/front_right_steer1
+        - /RobotModel1/Links1/front_right_wheel1
+        - /RobotModel1/Links1/rear_left_steer1
+        - /RobotModel1/Links1/rear_left_wheel1
+        - /RobotModel1/Links1/rear_right_steer1
+        - /RobotModel1/Links1/rear_right_wheel1
         - /Axes1
+        - /Axes1/Status1
         - /TF1
         - /TF1/Frames1
         - /TF1/Tree1
-        - /TF1/Tree1/chassis_footprint1
-        - /TF1/Tree1/chassis_footprint1/chassis_link1
       Splitter Ratio: 0.5
     Tree Height: 668
   - Class: rviz/Selection
@@ -68,9 +83,89 @@ Visualization Manager:
       Links:
         All Links Enabled: true
         Expand Joint Details: false
-        Expand Link Details: false
+        Expand Link Details: true
         Expand Tree: false
         Link Tree Style: ""
+        arm_footprint:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        arm_link_01:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        arm_link_02:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        arm_link_03:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        arm_link_03a:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        arm_link_04:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        chassis_footprint:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        chassis_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        front_left_steer:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        front_left_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        front_right_steer:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        front_right_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rear_left_steer:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rear_left_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rear_right_steer:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rear_right_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
       Name: RobotModel
       Robot Description: robot_description
       TF Prefix: ""
@@ -79,9 +174,9 @@ Visualization Manager:
       Visual Enabled: true
     - Class: rviz/Axes
       Enabled: true
-      Length: 1
+      Length: 0.5
       Name: Axes
-      Radius: 0.10000000149011612
+      Radius: 0.019999999552965164
       Reference Frame: <Fixed Frame>
       Value: true
     - Class: rviz/TF
@@ -89,6 +184,18 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
+        arm_footprint:
+          Value: true
+        arm_link_01:
+          Value: true
+        arm_link_02:
+          Value: true
+        arm_link_03:
+          Value: true
+        arm_link_03a:
+          Value: true
+        arm_link_04:
+          Value: true
         chassis_footprint:
           Value: true
         chassis_link:
@@ -111,11 +218,18 @@ Visualization Manager:
           Value: true
       Marker Scale: 1
       Name: TF
-      Show Arrows: true
-      Show Axes: true
-      Show Names: true
+      Show Arrows: false
+      Show Axes: false
+      Show Names: false
       Tree:
         chassis_footprint:
+          arm_footprint:
+            arm_link_01:
+              arm_link_02:
+                arm_link_03:
+                  arm_link_03a:
+                    arm_link_04:
+                      {}
           chassis_link:
             front_left_steer:
               front_left_wheel:
@@ -159,25 +273,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 10
+      Distance: 2.4508087635040283
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0
-        Y: 0
-        Z: 0
+        X: 0.09592804312705994
+        Y: 0.057562705129384995
+        Z: 0.14433638751506805
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.785398006439209
+      Pitch: 0.2953980267047882
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.785398006439209
+      Yaw: 5.868584632873535
     Saved: ~
 Window Geometry:
   Displays:
