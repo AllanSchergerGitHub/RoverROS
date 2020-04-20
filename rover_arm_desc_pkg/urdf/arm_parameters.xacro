@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
   <xacro:property name="a_link_00_name" value="arm_footprint"/>
+  <xacro:property name="a_link_0a_name" value="arm_base_link"/>
   <xacro:property name="a_link_01_name" value="arm_link_01"/>
   <xacro:property name="a_link_02_name" value="arm_link_02"/>
   <xacro:property name="a_link_03_name" value="arm_link_03"/>

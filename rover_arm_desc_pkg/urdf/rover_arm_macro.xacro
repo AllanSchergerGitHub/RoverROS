@@ -11,24 +11,40 @@
   <xacro:macro name="rover_arm">
     <!-- Begin - Robot Description -->
     <!-- Arm footprint -->
-    <xacro:m_link_cylinder name="${a_link_00_name}"
-                           color="gray"
-                           origin_rpy="0 0 0"
-                           origin_xyz="${world_x_origin_to_arm_x_origin}
-                                       ${world_y_origin_to_arm_y_origin}
-                                       ${world_z_origin_to_arm_z_origin}"
-                           r="${arm_foot_cyl_radius}"
-                           l="${arm_foot_cyl_height}"/>
+    <xacro:m_link_box name="${a_link_00_name}"
+                      color="white"
+                      origin_rpy="0 0 0" origin_xyz="0 0 0"
+                      w="0.0001" d="0.0001" h="0.0001"/>
 
-    <gazebo reference="${r_link_00_name}">
+    <gazebo reference="${a_link_00_name}">
       <material>Gazebo/White</material>
     </gazebo>
 
     <!-- Arm Links -->
+    <!-- Base Link -->
+    <xacro:m_link_cylinder_inertia name="${a_link_0a_name}"
+                                   color="gray"
+                                   origin_rpy="0 0 0"
+                                   origin_xyz="0 0 0"
+                                   m="0.010"
+                                   r="${arm_foot_cyl_radius}"
+                                   l="${arm_foot_cyl_height}"/>
+
+    <gazebo reference="${a_link_0a_name}">
+      <material>Gazebo/Black</material>
+    </gazebo>
+
+    <xacro:m_joint_fixed name="${a_link_00_name}__${a_link_0a_name}_joint"
+                         origin_rpy="0 0 0"
+                         origin_xyz="${world_x_origin_to_arm_x_origin}
+                                     ${world_y_origin_to_arm_y_origin}
+                                     ${world_z_origin_to_arm_z_origin}"
+                         parent="${a_link_00_name}" child="${a_link_0a_name}"/>
+
     <!-- Link 01 -->
     <xacro:arm_link name="${a_link_01_name}"
                     type="mesh"
-                    parent="${a_link_00_name}"
+                    parent="${a_link_0a_name}"
                     x_dim="${arm_link01_x}"
                     y_dim="${arm_link01_y}"
                     z_dim="${arm_link01_z}"
@@ -39,9 +55,7 @@
                     m="${arm_link01_m}"
                     file="package://rover_arm_desc_pkg/meshes/link1.dae"
                     scale="1.0 1.0 1.0"
-                    joint_xyz="${world_x_origin_to_arm_x_origin}
-                               ${world_y_origin_to_arm_y_origin}
-                               ${world_z_origin_to_arm_z_origin}"
+                    joint_xyz="0 0 0"
                     joint_rpy="0 0 0"
                     axis_xyz="0 0 1"
                     axis_rpy="0 0 0"
@@ -139,5 +153,10 @@
                     axis_rpy="0 0 0"
                     lim_l="${-100*M_PI/157}"
                     lim_u="${25*M_PI/157}"/>
+
+    <!-- Rover -->
+    <gazebo>
+      <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so"/>
+    </gazebo>
   </xacro:macro>
 </robot>
