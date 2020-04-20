@@ -5,7 +5,7 @@
 #
 #
 # Publish the joint states to joint_states.
-joint_state_ctrlr:
+rover_joint_state_ctrlr:
   type: joint_state_controller/JointStateController
   publish_rate: 30
 
