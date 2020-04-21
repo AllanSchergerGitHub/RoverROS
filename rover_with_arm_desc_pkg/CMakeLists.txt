@@ -8,6 +8,8 @@ project(rover_with_arm_desc_pkg)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  rover_arm_desc_pkg
+  rover_desc_pkg
   rviz
   tf
   urdf

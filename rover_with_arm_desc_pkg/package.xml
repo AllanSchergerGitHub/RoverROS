@@ -38,14 +38,20 @@
 
   <buildtool_depend>catkin</buildtool_depend>
 
+  <build_depend>rover_arm_desc_pkg</build_depend>
+  <build_depend>rover_desc_pkg</build_depend>
   <build_depend>rviz</build_depend>
   <build_depend>tf</build_depend>
   <build_depend>urdf</build_depend>
   <build_depend>xacro</build_depend>
+  <build_export_depend>rover_arm_desc_pkg</build_export_depend>
+  <build_export_depend>rover_desc_pkg</build_export_depend>
   <build_export_depend>rviz</build_export_depend>
   <build_export_depend>tf</build_export_depend>
   <build_export_depend>urdf</build_export_depend>
   <build_export_depend>xacro</build_export_depend>
+  <exec_depend>rover_arm_desc_pkg</exec_depend>
+  <exec_depend>rover_desc_pkg</exec_depend>
   <exec_depend>rviz</exec_depend>
   <exec_depend>tf</exec_depend>
   <exec_depend>urdf</exec_depend>
