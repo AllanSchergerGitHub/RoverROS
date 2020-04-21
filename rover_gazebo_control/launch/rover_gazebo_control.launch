@@ -22,15 +22,8 @@ Arguments:
 -->
 
 <launch>
-  <!-- Gazebo parameters -->
+  <!-- Namespace -->
   <arg name="namespace" default="rover"/>
-  <arg name="world_name" default="worlds/empty.world"/>
-  <arg name="paused" default="false"/>
-  <arg name="use_sim_time" default="true"/>
-  <arg name="gui" default="true"/>
-  <arg name="headless" default="false"/>
-  <arg name="debug" default="false"/>
-  <arg name="publish_frequency" default="30.0"/>
 
   <!-- rover initial pose -->
   <arg name="x" default="0.0"/>
@@ -40,19 +33,14 @@ Arguments:
   <arg name="pitch" default="0.0"/>
   <arg name="yaw" default="0.0"/>
 
+  <!-- Launch Rover -->
   <include file="$(find rover_desc_pkg)/launch/rover.launch">
     <arg name="namespace" value="$(arg namespace)"/>
   </include>
 
   <group ns="$(arg namespace)">
-    <!-- Create an empty world. -->
-    <include file="$(find gazebo_ros)/launch/empty_world.launch">
-        <arg name="paused" default="$(arg paused)"/>
-        <arg name="use_sim_time" default="$(arg use_sim_time)"/>
-        <arg name="gui" default="$(arg gui)"/>
-        <arg name="headless" default="$(arg headless)"/>
-        <arg name="debug" default="$(arg debug)"/>
-    </include>
+    <!-- Launch Gazebo World -->
+    <include file="$(find rover_gazebo_control)/launch/rover_gazebo_world.launch"/>
 
     <!-- Spawn the rover. -->
     <node name="rover_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
