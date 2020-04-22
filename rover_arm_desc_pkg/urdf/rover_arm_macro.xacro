@@ -8,7 +8,7 @@
   <!-- End - Include -->
 
   <!-- Rover Arm Macro -->
-  <xacro:macro name="rover_arm">
+  <xacro:macro name="rover_arm" params="without_rover">
     <!-- Begin - Robot Description -->
     <!-- Arm footprint -->
     <xacro:m_link_box name="${a_link_00_name}"
@@ -154,9 +154,11 @@
                     lim_l="${-100*M_PI/157}"
                     lim_u="${25*M_PI/157}"/>
 
-    <!-- Rover -->
-    <gazebo>
-      <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so"/>
-    </gazebo>
+    <!-- Arm -->
+    <xacro:if value="${without_rover}">
+      <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so"/>
+      </gazebo>
+    </xacro:if>
   </xacro:macro>
 </robot>

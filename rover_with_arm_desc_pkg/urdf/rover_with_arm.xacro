@@ -8,7 +8,7 @@
   <!-- Create the rover + arm combo itself as a macro -->
   <!-- Instantiate rover and arm models -->
   <xacro:rover_robot/>
-  <xacro:rover_arm/>
+  <xacro:rover_arm without_rover="false"/>
 
   <!-- Attach the arm to the rover -->
   <!-- Note: This assumes that the 'arm' macro defines a 'footprint'

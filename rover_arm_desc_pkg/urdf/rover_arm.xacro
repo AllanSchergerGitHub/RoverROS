@@ -4,5 +4,5 @@
   <xacro:include filename="$(find rover_arm_desc_pkg)/urdf/rover_arm_macro.xacro"/>
   <!-- End - Include -->
 
-  <xacro:rover_arm/>
+  <xacro:rover_arm without_rover="true"/>
 </robot>
