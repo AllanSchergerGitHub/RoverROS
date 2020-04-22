@@ -36,7 +36,7 @@ Arguments:
   </include>
 
   <!-- Launch Plot Juggler -->
-  <node name="plotjuggler_with_layout" pkg="plotjuggler" type="PlotJuggler" args="--nosplash"
+  <node name="plotjuggler" pkg="plotjuggler" type="PlotJuggler" args="--nosplash"
         if="$(eval start_plt)"/>
 
   <group ns="$(arg namespace)">
