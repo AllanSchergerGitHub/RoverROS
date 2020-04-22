@@ -10,7 +10,7 @@ arm_joint_state_ctrlr:
   publish_rate: 30
 
 arm_link_01_ctrlr:
-  joint: arm_base_link__arm_link_01_joint
+  joint: arm_foot_cyl__arm_link_01_joint
   type: effort_controllers/JointPositionController
   pid: {p: 0.5, i: 0.0, d: 0.0}
 arm_link_02_ctrlr:
