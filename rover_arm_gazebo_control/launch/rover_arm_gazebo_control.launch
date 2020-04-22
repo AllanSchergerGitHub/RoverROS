@@ -14,11 +14,16 @@ Arguments:
 <launch>
   <!-- Gazebo parameters -->
   <arg name="namespace" default="arm"/>
+  <arg name="start_plt" default="true"/>
 
   <!-- Launch the arm -->
   <include file="$(find rover_arm_desc_pkg)/launch/arm.launch">
     <arg name="namespace" value="$(arg namespace)"/>
   </include>
+
+  <!-- Launch Plot Juggler -->
+  <node name="plotjuggler_with_layout" pkg="plotjuggler" type="PlotJuggler" args="--nosplash"
+        if="$(eval start_plt)"/>
 
   <group ns="$(arg namespace)">
     <!-- Launch Gazebo World -->

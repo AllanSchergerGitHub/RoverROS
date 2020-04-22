@@ -24,6 +24,7 @@ Arguments:
 <launch>
   <!-- Namespace -->
   <arg name="namespace" default="rover"/>
+  <arg name="start_plt" default="true"/>
 
   <!-- rover initial pose -->
   <arg name="x" default="0.0"/>
@@ -37,6 +38,10 @@ Arguments:
   <include file="$(find rover_desc_pkg)/launch/rover.launch">
     <arg name="namespace" value="$(arg namespace)"/>
   </include>
+
+  <!-- Launch Plot Juggler -->
+  <node name="plotjuggler_with_layout" pkg="plotjuggler" type="PlotJuggler" args="--nosplash"
+        if="$(eval start_plt)"/>
 
   <group ns="$(arg namespace)">
     <!-- Launch Gazebo World -->
