@@ -11,7 +11,7 @@
     <xacro:property name="steer_y" value="${translateY * world_y_origin_to_steer_y_origin}" scope="local"/>
     <xacro:property name="steer_z" value="${wheel_radius + steer_z_origin_to_wheel_z_origin}" scope="local"/>
 
-    <xacro:if value="${fr == 'rear'}">
+    <xacro:if value="${fr == 'front'}">
       <xacro:property name="steer_x"
                       value="${translateX * (world_x_origin_to_steer_x_origin + 0.063)}" scope="local"/>
     </xacro:if>
