@@ -1,0 +1,59 @@
+# joint_limits.yaml allows the dynamics properties specified in the URDF to be overwritten or augmented as needed
+# Specific joint properties can be changed with the keys [max_position, min_position, max_velocity, max_acceleration]
+# Joint limits can be turned off with [has_velocity_limits, has_acceleration_limits]
+joint_limits:
+  arm_foot_cyl__arm_link_01_joint:
+    has_velocity_limits: true
+    max_velocity: 1
+    has_acceleration_limits: false
+    max_acceleration: 0
+  arm_link_01__arm_link_02_joint:
+    has_velocity_limits: true
+    max_velocity: 1
+    has_acceleration_limits: false
+    max_acceleration: 0
+  arm_link_02__arm_link_03_joint:
+    has_velocity_limits: true
+    max_velocity: 1
+    has_acceleration_limits: false
+    max_acceleration: 0
+  arm_link_03__arm_link_03a_joint:
+    has_velocity_limits: true
+    max_velocity: 1
+    has_acceleration_limits: false
+    max_acceleration: 0
+  arm_link_03a__arm_link_04_joint:
+    has_velocity_limits: true
+    max_velocity: 1
+    has_acceleration_limits: false
+    max_acceleration: 0
+  chassis_link__front_left_steer:
+    has_velocity_limits: true
+    max_velocity: 100
+    has_acceleration_limits: false
+    max_acceleration: 0
+  chassis_link__front_right_steer:
+    has_velocity_limits: true
+    max_velocity: 100
+    has_acceleration_limits: false
+    max_acceleration: 0
+  front_left_steer__front_left_wheel:
+    has_velocity_limits: true
+    max_velocity: 25
+    has_acceleration_limits: false
+    max_acceleration: 0
+  front_right_steer__front_right_wheel:
+    has_velocity_limits: true
+    max_velocity: 25
+    has_acceleration_limits: false
+    max_acceleration: 0
+  rear_left_steer__rear_left_wheel:
+    has_velocity_limits: true
+    max_velocity: 25
+    has_acceleration_limits: false
+    max_acceleration: 0
+  rear_right_steer__rear_right_wheel:
+    has_velocity_limits: true
+    max_velocity: 25
+    has_acceleration_limits: false
+    max_acceleration: 0
