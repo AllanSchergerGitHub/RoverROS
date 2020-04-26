@@ -28,3 +28,37 @@ joint_state_controller:
   publish_rate: 50
 controller_list:
   []
+arm_position_controller:
+  type: effort_controllers/JointPositionController
+  joints:
+    - arm_foot_cyl__arm_link_01_joint
+    - arm_link_01__arm_link_02_joint
+    - arm_link_02__arm_link_03_joint
+    - arm_link_03__arm_link_03a_joint
+    - arm_link_03a__arm_link_04_joint
+  gains:
+    arm_foot_cyl__arm_link_01_joint:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    arm_link_01__arm_link_02_joint:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    arm_link_02__arm_link_03_joint:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    arm_link_03__arm_link_03a_joint:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    arm_link_03a__arm_link_04_joint:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
