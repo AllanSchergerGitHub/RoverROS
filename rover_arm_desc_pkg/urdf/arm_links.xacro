@@ -3,7 +3,7 @@
   <!-- Begin - Include -->
   <xacro:include filename="$(find rover_arm_desc_pkg)/urdf/arm_parameters.xacro"/>
   <xacro:include filename="$(find rover_desc_pkg)/urdf/rover_parameters.xacro"/>
-  <xacro:include filename="$(find rover_desc_pkg)/urdf/links_joints.xacro"/>
+  <xacro:include filename="$(find rover_arm_resources_pkg)/urdf/links_joints.xacro"/>
   <!-- End - Include -->
 
   <!-- Links -->
@@ -18,7 +18,6 @@
     <!-- Link -->
     <xacro:if value="${type == 'cyl_iner'}">
       <xacro:m_link_cylinder_inertia name="${name}"
-                                     color="blue"
                                      origin_rpy="${link_rpy}"
                                      origin_xyz="${link_xyz}"
                                      r="${x_dim}"
@@ -28,7 +27,6 @@
 
     <xacro:if value="${type == 'box_iner'}">
       <xacro:m_link_box_inertia name="${name}"
-                                color="blue"
                                 origin_rpy="${link_rpy}"
                                 origin_xyz="${link_xyz}"
                                 w="${x_dim}"

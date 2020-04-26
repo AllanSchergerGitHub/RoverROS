@@ -4,7 +4,7 @@
   <xacro:include filename="$(find rover_arm_desc_pkg)/urdf/arm_parameters.xacro"/>
   <xacro:include filename="$(find rover_arm_desc_pkg)/urdf/arm_links.xacro"/>
   <xacro:include filename="$(find rover_desc_pkg)/urdf/rover_parameters.xacro"/>
-  <xacro:include filename="$(find rover_desc_pkg)/urdf/links_joints.xacro"/>
+  <xacro:include filename="$(find rover_arm_resources_pkg)/urdf/links_joints.xacro"/>
   <!-- End - Include -->
 
   <!-- Rover Arm Macro -->
@@ -12,7 +12,6 @@
     <!-- Begin - Robot Description -->
     <!-- Arm footprint -->
     <xacro:m_link_box name="${a_link_00_name}"
-                      color="white"
                       origin_rpy="0 0 0" origin_xyz="0 0 0"
                       w="0.0001" d="0.0001" h="0.0001"/>
 
@@ -23,7 +22,6 @@
     <!-- Arm Links -->
     <!-- Base Link -->
     <xacro:m_link_cylinder_inertia name="${a_link_0a_name}"
-                                   color="gray"
                                    origin_rpy="0 0 0"
                                    origin_xyz="0 0 0"
                                    m="0.010"
