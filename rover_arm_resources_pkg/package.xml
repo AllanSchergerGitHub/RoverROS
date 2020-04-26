@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>rover_resources_pkg</name>
+  <name>rover_arm_resources_pkg</name>
   <version>0.0.0</version>
   <description>
-    The rover_resources_pkg package contains common urdf/xacro used by
+    The rover_arm_resources_pkg package contains common urdf/xacro used by
     Rover and Arm such as materials and colors.
   </description>
 

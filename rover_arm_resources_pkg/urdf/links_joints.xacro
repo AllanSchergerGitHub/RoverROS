@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- Begin - Include -->
+    <xacro:include filename="$(find rover_arm_resources_pkg)/urdf/common_materials.xacro"/>
+  <!-- End - Include -->
+
   <!-- Joint Macro -->
   <!-- fixed joint -->
   <xacro:macro name="m_joint_fixed" params="name origin_xyz origin_rpy parent child">
@@ -54,20 +58,20 @@
   </xacro:macro>
 
   <!-- Cylinder link Macro without inertia -->
-  <xacro:macro name="m_link_cylinder" params="name color origin_xyz origin_rpy r l">
+  <xacro:macro name="m_link_cylinder" params="name origin_xyz origin_rpy r l">
     <link name="${name}">
       <visual>
         <origin rpy="${origin_rpy}" xyz="${origin_xyz}"/>
         <geometry>
           <cylinder radius="${r}" length="${l}"/>
         </geometry>
-        <material name="${color}"/>
+        <xacro:material_gray/>
       </visual>
     </link>
   </xacro:macro>
 
   <!-- Cylinder link Macro with inertia -->
-  <xacro:macro name="m_link_cylinder_inertia" params="name color origin_xyz origin_rpy r l m">
+  <xacro:macro name="m_link_cylinder_inertia" params="name origin_xyz origin_rpy r l m">
     <link name="${name}">
       <inertial>
         <mass value="${m}"/>
@@ -87,26 +91,26 @@
         <geometry>
           <cylinder radius="${r}" length="${l}"/>
         </geometry>
-        <material name="${color}"/>
+        <xacro:material_darkgray/>
       </visual>
     </link>
   </xacro:macro>
 
   <!-- Box link Macro without inertia -->
-  <xacro:macro name="m_link_box" params="name color origin_xyz origin_rpy w d h">
+  <xacro:macro name="m_link_box" params="name origin_xyz origin_rpy w d h">
     <link name="${name}">
       <visual>
         <origin rpy="${origin_rpy}" xyz="${origin_xyz}"/>
         <geometry>
           <box size="${w} ${d} ${h}"/>
         </geometry>
-        <material name="${color}"/>
+        <xacro:material_white/>
       </visual>
     </link>
   </xacro:macro>
 
   <!-- Box link Macro with inertia -->
-  <xacro:macro name="m_link_box_inertia" params="name color origin_xyz origin_rpy m w d h">
+  <xacro:macro name="m_link_box_inertia" params="name origin_xyz origin_rpy m w d h">
     <link name="${name}">
       <inertial>
         <mass value="${m}"/>
@@ -126,7 +130,7 @@
         <geometry>
           <box size="${w} ${d} ${h}"/>
         </geometry>
-        <material name="${color}"/>
+        <xacro:material_clay_brown/>
       </visual>
     </link>
   </xacro:macro>
