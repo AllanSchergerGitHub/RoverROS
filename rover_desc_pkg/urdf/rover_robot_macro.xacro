@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <robot name="rover_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <!-- Begin - Include -->
+  <xacro:include filename="$(find rover_arm_resources_pkg)/urdf/links_joints.xacro"/>
   <xacro:include filename="$(find rover_desc_pkg)/urdf/rover_parameters.xacro"/>
-  <xacro:include filename="$(find rover_desc_pkg)/urdf/links_joints.xacro"/>
   <xacro:include filename="$(find rover_desc_pkg)/urdf/steer.xacro"/>
   <xacro:include filename="$(find rover_desc_pkg)/urdf/wheel.xacro"/>
   <!-- End - Include -->
@@ -12,7 +12,6 @@
     <!-- Begin - Robot Description -->
     <!-- Chassis footprint -->
     <xacro:m_link_box name="${r_link_00_name}"
-                      color="white"
                       origin_rpy="0 0 0" origin_xyz="0 0 0"
                       w="0.0001" d="0.0001" h="0.0001"/>
 

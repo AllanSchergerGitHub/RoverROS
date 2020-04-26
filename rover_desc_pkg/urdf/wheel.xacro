@@ -2,7 +2,8 @@
 <robot name="wheel" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <!-- Begin - Include -->
   <xacro:include filename="$(find rover_desc_pkg)/urdf/rover_parameters.xacro"/>
-  <xacro:include filename="$(find rover_desc_pkg)/urdf/links_joints.xacro"/>
+  <xacro:include filename="$(find rover_arm_resources_pkg)/urdf/links_joints.xacro"/>
+  <xacro:include filename="$(find rover_arm_resources_pkg)/urdf/common_constants.xacro"/>
   <!-- End - Include -->
 
   <xacro:macro name="wheel" params="fr lr parent translateX translateY"> <!-- fr: front, rear; lr: left, right -->

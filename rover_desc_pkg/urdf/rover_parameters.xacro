@@ -3,59 +3,6 @@
   <xacro:property name="r_link_00_name" value="chassis_footprint"/>
   <xacro:property name="r_link_01_name" value="chassis_link"/>
 
-  <!-- Color parameters -->
-  <xacro:macro name="red">
-    <material name="">
-      <color rgba="${204/255} ${0.0/255} ${0.0/255} ${255/255}"/>
-    </material>
-  </xacro:macro>
-
-  <xacro:macro name="green">
-    <material name="">
-      <color rgba="${0.0/255} ${204/255} ${0.0/255} ${255/255}"/>
-    </material>
-  </xacro:macro>
-
-  <xacro:macro name="blue">
-    <material name="">
-      <color rgba="${0.0/255} ${0.0/255} ${204/255} ${255/255}"/>
-    </material>
-  </xacro:macro>
-
-  <xacro:macro name="black">
-    <material name="">
-      <color rgba="${0.0/255} ${0.0/255} ${0.0/255} ${255/255}"/>
-    </material>
-  </xacro:macro>
-
-  <xacro:macro name="white">
-    <material name="">
-      <color rgba="${255/255} ${255/255} ${255/255} ${255/255}"/>
-    </material>
-  </xacro:macro>
-
-  <xacro:macro name="gray">
-    <material name="">
-      <color rgba="${178.5/255} ${178.5/255} ${178.5/255} ${255/255}"/>
-    </material>
-  </xacro:macro>
-
-  <xacro:macro name="darkgray">
-    <material name="">
-      <color rgba="${76.5/255} ${76.5/255} ${76.5/255} ${255/255}"/>
-    </material>
-  </xacro:macro>
-
-  <xacro:macro name="yellow">
-    <material name="">
-      <color rgba="${204/255} ${204/255} ${204/255} ${255/255}"/>
-    </material>
-  </xacro:macro>
-
-  <!-- All the units are in m-kg-s-radians unit system -->
-  <xacro:property name="M_PI" value="3.141592653"/>
-  <xacro:property name="DEG_TO_RAD" value="0.017453293"/>
-
   <!-- Chassis dimensions -->
   <xacro:property name="chassis_length" value="1.016"/>
   <xacro:property name="chassis_width" value="0.6096"/>
