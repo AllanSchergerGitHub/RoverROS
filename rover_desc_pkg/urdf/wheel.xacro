@@ -41,6 +41,7 @@
                                     ${steer_y_origin_to_wheel_y_origin}
                                     ${-steer_z_origin_to_wheel_z_origin}"
                         parent="${parent}" child="${fr}_${lr}_wheel"
-                        limit_e="100" limit_v="25"/>
+                        limit_e="1000" limit_v="25"
+                        damp="10.0" fric="1.0"/>
   </xacro:macro>
 </robot>

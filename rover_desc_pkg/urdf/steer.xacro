@@ -58,8 +58,9 @@
                          axis_rpy="0 0 0"
                          origin_rpy="0 0 0" origin_xyz="${steer_x} ${steer_y} ${steer_z}"
                          parent="${parent}" child="${fr}_${lr}_steer"
-                         limit_e="100" limit_l="-${5*M_PI/12}"
-                         limit_u="${5*M_PI/12}" limit_v="100"/>
+                         limit_e="1000" limit_l="-${5*M_PI/12}"
+                         limit_u="${5*M_PI/12}" limit_v="100"
+                         damp="25.0" fric="10.0"/>
     </xacro:if>
   </xacro:macro>
 </robot>
