@@ -15,9 +15,9 @@
         [$(arg namespace)/joint_states]
       </rosparam>
     </node>
-
+    
     <include file="$(find rover_with_arm_moveit_config)/launch/move_group.launch">
-      <arg name="publish_monitored_planning_scene" value="true" />
+      <arg name="publish_monitored_planning_scene" value="true"/>
     </include>
 
     <!-- The visualization component of MoveIt! -->
