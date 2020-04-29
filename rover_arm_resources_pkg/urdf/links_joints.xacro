@@ -16,13 +16,15 @@
   </xacro:macro>
 
   <!-- continuous joint -->
-  <xacro:macro name="m_joint_cont" params="name axis_xyz origin_xyz origin_rpy parent child limit_e limit_v">
+  <xacro:macro name="m_joint_cont" params="name axis_xyz origin_xyz origin_rpy
+               parent child limit_e limit_v damp fric">
     <joint name="${name}" type="continuous">
       <axis xyz="${axis_xyz}"/>
       <limit effort="${limit_e}" velocity="${limit_v}"/>
       <origin rpy="${origin_rpy}" xyz="${origin_xyz}"/>
       <parent link="${parent}"/>
       <child link="${child}"/>
+      <dynamics damping="${damp}" friction="${fric}"/>
     </joint>
     <transmission name="trans_${name}">
       <type>transmission_interface/SimpleTransmission</type>
@@ -37,13 +39,16 @@
   </xacro:macro>
 
   <!-- revolute joint -->
-  <xacro:macro name="m_joint_rev" params="name axis_xyz axis_rpy origin_xyz origin_rpy parent child limit_e limit_l limit_u limit_v">
+  <xacro:macro name="m_joint_rev" params="name axis_xyz axis_rpy origin_xyz
+               origin_rpy parent child limit_e limit_l limit_u limit_v damp
+               fric">
     <joint name="${name}" type="revolute">
       <axis rpy="axis_rpy" xyz="${axis_xyz}"/>
       <limit effort="${limit_e}" lower="${limit_l}" upper="${limit_u}" velocity="${limit_v}"/>
       <origin rpy="${origin_rpy}" xyz="${origin_xyz}"/>
       <parent link="${parent}"/>
       <child link="${child}"/>
+      <dynamics damping="${damp}" friction="${fric}"/>
     </joint>
     <transmission name="trans_${name}">
       <type>transmission_interface/SimpleTransmission</type>

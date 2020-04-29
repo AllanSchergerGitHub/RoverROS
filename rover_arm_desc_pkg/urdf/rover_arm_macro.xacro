@@ -58,7 +58,9 @@
                     axis_xyz="0 0 1"
                     axis_rpy="0 0 0"
                     lim_l="-${M_PI/2}"
-                    lim_u="${M_PI/2}"/>
+                    lim_u="${30*M_PI/157}"
+                    d="2.0"
+                    f="1.0"/>
 
     <!-- Link 02 -->
     <xacro:arm_link name="${a_link_02_name}"
@@ -81,7 +83,9 @@
                     axis_xyz="0 0 1"
                     axis_rpy="0 0 0"
                     lim_l="-${M_PI/2}"
-                    lim_u="${M_PI/2}"/>
+                    lim_u="${M_PI/2}"
+                    d="0.1"
+                    f="0.1"/>
 
     <!-- Link 03 -->
     <xacro:arm_link name="${a_link_03_name}"
@@ -104,7 +108,9 @@
                     axis_xyz="0 1 0"
                     axis_rpy="0 0 0"
                     lim_l="${-125*M_PI/314}"
-                    lim_u="${25*M_PI/157}"/>
+                    lim_u="${25*M_PI/157}"
+                    d="1.50"
+                    f="0.75"/>
 
     <!-- Link 03a -->
     <xacro:arm_link name="${a_link_03a_name}"
@@ -127,7 +133,9 @@
                     axis_xyz="0 1 0"
                     axis_rpy="0 0 0"
                     lim_l="${-125*M_PI/314}"
-                    lim_u="${25*M_PI/157}"/>
+                    lim_u="${25*M_PI/157}"
+                    d="1.0"
+                    f="0.5"/>
 
     <!-- Link 04 -->
     <xacro:arm_link name="${a_link_04_name}"
@@ -150,7 +158,9 @@
                     axis_xyz="0 1 0"
                     axis_rpy="0 0 0"
                     lim_l="${-100*M_PI/157}"
-                    lim_u="${25*M_PI/157}"/>
+                    lim_u="${25*M_PI/157}"
+                    d="0.25"
+                    f="0.05"/>
 
     <!-- Arm -->
     <xacro:if value="${without_rover}">
