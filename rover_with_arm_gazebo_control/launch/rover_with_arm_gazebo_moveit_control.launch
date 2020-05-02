@@ -1,12 +1,16 @@
 <?xml version="1.0"?>
 
-<!-- rover_with_arm_gazebo_control.launch
+<!-- rover_with_arm_gazebo_moveit_control.launch
 
-Use Gazebo to simulate a rover with an arm.
+Use Gazebo to simulate a rover with an arm in Gazebo.
+Arm trajectory motions are controlled using MoveIT.
+(Only Arm motions are being planned and executed.)
 
 Arguments:
   namespace_rover (string, default: rover_arm)
     rover_arm namespace.
+  start_plt (string, default: true)
+    It is used to launch PlotJuggler for debugging.
   x (double, default: 0.0)
   y (double, default: 0.0)
   z (double, default: 0.1)
