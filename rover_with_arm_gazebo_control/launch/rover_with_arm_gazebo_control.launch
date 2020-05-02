@@ -21,6 +21,7 @@ Arguments:
   <!-- Namespace -->
   <arg name="namespace" default="rover_arm"/>
   <arg name="start_plt" default="true"/>
+  <arg name="without_moveit" default="true"/>
 
   <!-- rover initial pose -->
   <arg name="x" default="0.0"/>
@@ -53,6 +54,13 @@ Arguments:
     <!-- Load the joint controllers. One of these publishes the joint states to joint_states. -->
     <node name="rover_arm_ctrlr_spawner" pkg="controller_manager" type="spawner"
           args="$(find rover_gazebo_control)/config/rover_joint_ctrlr_params.yaml
-                $(find rover_arm_gazebo_control)/config/arm_joint_ctrlr_params.yaml"/>
+                $(find rover_arm_gazebo_control)/config/arm_joint_ctrlr_params.yaml"
+          if="$(eval without_moveit)"/>
+
+    <!-- Load the joint controllers. One of these publishes the joint states to joint_states. -->
+    <node name="rover_arm_ctrlr_spawner" pkg="controller_manager" type="spawner"
+          args="$(find rover_gazebo_control)/config/rover_joint_ctrlr_params.yaml
+                $(find rover_with_arm_gazebo_control)/config/rover_with_arm_control.yaml"
+          unless="$(eval without_moveit)"/>
   </group>
 </launch>
