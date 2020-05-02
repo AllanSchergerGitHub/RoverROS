@@ -1,16 +1,4 @@
 controller_list:
-  - name: rover_controller
-    action_ns: follow_joint_trajectory
-    type: FollowJointTrajectory
-    default: true
-    joints:
-      - chassis_link__front_left_steer
-      - front_left_steer__front_left_wheel
-      - chassis_link__front_right_steer
-      - front_right_steer__front_right_wheel
-      - rear_left_steer__rear_left_wheel
-      - rear_right_steer__rear_right_wheel
-
   - name: arm_controller
     action_ns: follow_joint_trajectory
     type: FollowJointTrajectory

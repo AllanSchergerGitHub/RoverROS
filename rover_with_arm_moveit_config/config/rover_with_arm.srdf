@@ -9,29 +9,8 @@
     <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
     <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
     <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
-    <group name="rover">
-        <link name="chassis_footprint" />
-        <link name="chassis_link" />
-        <link name="front_left_steer" />
-        <link name="front_left_wheel" />
-        <link name="front_right_steer" />
-        <link name="front_right_wheel" />
-        <link name="rear_left_steer" />
-        <link name="rear_left_wheel" />
-        <link name="rear_right_steer" />
-        <link name="rear_right_wheel" />
-        <joint name="chassis_footprint__chassis_link" />
-        <joint name="chassis_link__front_left_steer" />
-        <joint name="front_left_steer__front_left_wheel" />
-        <joint name="chassis_link__front_right_steer" />
-        <joint name="front_right_steer__front_right_wheel" />
-        <joint name="chassis_link__rear_left_steer" />
-        <joint name="rear_left_steer__rear_left_wheel" />
-        <joint name="chassis_link__rear_right_steer" />
-        <joint name="rear_right_steer__rear_right_wheel" />
-    </group>
     <group name="arm">
-        <chain base_link="arm_footprint" tip_link="arm_link_04" />
+        <chain base_link="chassis_footprint" tip_link="arm_link_04" />
     </group>
     <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
     <group_state name="Arm_Zero" group="arm">
