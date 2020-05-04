@@ -1,6 +1,8 @@
 # RoverROS
 
-A repository containing the source code of a Rover with a 5DOF manipulator.
+A repository containing the source code of a Rover with a 5DOF manipulator.\
+
+My user name in github 'mturktest123' is a carryover from my days working on crowdsourcing via AWS Mechanical Turk.
 
 This project includes the development of the robot to be simulated in _Gazebo_.
 It uses `MoveIT` to trajectory control the manipulator.
