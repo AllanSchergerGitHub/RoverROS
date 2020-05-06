@@ -19,8 +19,7 @@
   <!-- Footprint position coordinates -->
   <xacro:property name="world_x_origin_to_arm_x_origin" value="${chassis_length/2 + arm_foot_cyl_radius}"/> <!-- Distance from world origin to mount point in X direction -->
   <xacro:property name="world_y_origin_to_arm_y_origin" value="-0.122"/> <!-- Distance from world origin to mount point in Y direction -->
-  <!-- <xacro:property name="world_z_origin_to_arm_z_origin" value="${0.56665-arm_foot_cyl_height}"/> --> <!-- Distance from world origin to mount point in Z direction -->
-  <xacro:property name="world_z_origin_to_arm_z_origin" value="${0.59+arm_foot_cyl_height}"/>
+  <xacro:property name="world_z_origin_to_arm_z_origin" value="${0.56665-arm_foot_cyl_height}"/> <!-- Distance from world origin to mount point in Z direction -->
 
   <!-- Arm joints -->
   <xacro:property name="arm_link_cyl_radius" value="0.05"/>
@@ -58,12 +57,12 @@
   <!-- Arm Link 03 translations -->
   <xacro:property name="arm_link03_x_trans" value="0.0000"/>
   <xacro:property name="arm_link03_y_trans" value="0.0000"/>
-  <xacro:property name="arm_link03_z_trans" value="-0.066"/>
+  <xacro:property name="arm_link03_z_trans" value="-0.095"/>
 
   <!-- Arm Link 03a dimensions -->
   <xacro:property name="arm_link03a_x" value="0.0200"/>
   <xacro:property name="arm_link03a_y" value="0.0200"/>
-  <xacro:property name="arm_link03a_z" value="0.4000"/>
+  <xacro:property name="arm_link03a_z" value="0.1900"/>
   <xacro:property name="arm_link03a_m" value="0.2"/> <!-- in Kg -->
 
   <!-- Arm Link 03a translations -->
@@ -93,7 +92,7 @@
 
   <xacro:property name="link03_link03a_x" value="0.0000"/>
   <xacro:property name="link03_link03a_y" value="0.0000"/>
-  <xacro:property name="link03_link03a_z" value="-0.065"/>
+  <xacro:property name="link03_link03a_z" value="${arm_link03_z_trans}"/>
 
   <xacro:property name="link03a_link04_x" value="0.0000"/>
   <xacro:property name="link03a_link04_y" value="0.0000"/>
