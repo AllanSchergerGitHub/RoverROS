@@ -1,18 +1,20 @@
 # RoverROS
 
-A repository containing the source code of a Rover with a 5DOF manipulator.\
+A repository containing the source code of a Rover with a 5DOF manipulator.
 
 My user name in github 'mturktest123' is a carryover from my days working on crowdsourcing via AWS Mechanical Turk.
 
 This project includes the development of the robot to be simulated in _Gazebo_.
+
 It uses `MoveIT` to trajectory control the manipulator.
 
-Dependancies:
-You will need to install the following:
+## Dependancies:
 
-  sudo apt-get install ros-melodic-ackermann-msgs
-  
-  sudo apt-get install ros-melodic-ros-control ros-melodic-ros-controllers
+You will require to install the following:
+
+  `sudo apt-get install ros-melodic-ackermann-msgs`
+
+  `sudo apt-get install ros-melodic-ros-control ros-melodic-ros-controllers`
 
 
 ## A detailed description of various packages is as follows.
