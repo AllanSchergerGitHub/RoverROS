@@ -10,8 +10,10 @@ It uses `MoveIT` to trajectory control the manipulator.
 
 ## Dependancies:
 
-You will require to install the following:
+You will need to install the following:
 
+  ROS Melodic
+  
   `sudo apt-get install ros-melodic-ackermann-msgs`
 
   `sudo apt-get install ros-melodic-ros-control ros-melodic-ros-controllers`
