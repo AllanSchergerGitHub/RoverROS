@@ -19,6 +19,17 @@ You will need to install the following:
   `sudo apt-get install ros-melodic-ros-control ros-melodic-ros-controllers`
 
 
+## Summary (quick start):
+ After you have everything installed use these two commands to see the full functionality.
+ 
+      `roslaunch rover_with_arm_gazebo_control rover_with_arm_gazebo_moveit_keyboard_control.launch`
+      
+      `roslaunch rover_with_arm_moveit_config moveit_planning_execution.launch`
+      
+ This [youtube video](https://www.youtube.com/watch?v=0F9IiBc68Lo&t=6s) demonstrates these two commands to control the rover and the arm in gazebo.
+
+
+
 ## A detailed description of various packages is as follows.
 
 ## rover_arm_resources_pkg
