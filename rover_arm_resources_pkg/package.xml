@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>rover_desc_pkg</name>
+  <name>rover_arm_resources_pkg</name>
   <version>0.0.0</version>
   <description>
-    The rover_desc_pkg package includes the modelling/description
-    (3D model, kinematics, mass and, etc) of the Rover.
+    The rover_arm_resources_pkg package contains common urdf/xacro used by
+    Rover and Arm such as materials and colors.
   </description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
   <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
-  <maintainer email="s2007.ravi@gmail.com">
+  <maintainer email="ravi@todo.todo">
     Ravi Sharma
   </maintainer>
 
@@ -31,23 +31,12 @@
   <!-- Author tags are optional, multiple are allowed, one per tag -->
   <!-- Authors do not have to be maintainers, but could be -->
   <!-- Example: -->
-  <author email="s2007.ravi@gmail.com">Ravi Sharma</author>
+  <author email="s2007.ravi@gmail.com">
+    Ravi Sharma
+  </author>
 
 
   <buildtool_depend>catkin</buildtool_depend>
-
-  <build_depend>rviz</build_depend>
-  <build_depend>tf</build_depend>
-  <build_depend>urdf</build_depend>
-  <build_depend>xacro</build_depend>
-  <build_export_depend>rviz</build_export_depend>
-  <build_export_depend>tf</build_export_depend>
-  <build_export_depend>urdf</build_export_depend>
-  <build_export_depend>xacro</build_export_depend>
-  <exec_depend>rviz</exec_depend>
-  <exec_depend>tf</exec_depend>
-  <exec_depend>urdf</exec_depend>
-  <exec_depend>xacro</exec_depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->

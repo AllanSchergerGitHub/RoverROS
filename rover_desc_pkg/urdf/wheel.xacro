@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <robot name="wheel" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <!-- Begin - Include -->
-  <xacro:include filename="$(find rover_desc_pkg)/urdf/robot_parameters.xacro"/>
-  <xacro:include filename="$(find rover_desc_pkg)/urdf/links_joints.xacro"/>
+  <xacro:include filename="$(find rover_desc_pkg)/urdf/rover_parameters.xacro"/>
+  <xacro:include filename="$(find rover_arm_resources_pkg)/urdf/links_joints.xacro"/>
+  <xacro:include filename="$(find rover_arm_resources_pkg)/urdf/common_constants.xacro"/>
   <!-- End - Include -->
 
   <xacro:macro name="wheel" params="fr lr parent translateX translateY"> <!-- fr: front, rear; lr: left, right -->
@@ -19,46 +20,28 @@
         <xacro:property name="wheel_z" value="${wheel_radius + 0.0032}" scope="local"/>
     </xacro:if>
 
-    <m_link_mesh name="${fr}_${lr}_wheel"
-                 color="${Black_Value}"
-                 origin_rpy="0 0 0"
-                 origin_xyz="0 0 0"
-                 mass="${m}"
-                 ixx="${m*(3*r*r+h*h)/12}" ixy="0.0" ixz="0.0"
-                 iyy="${m*(3*r*r+h*h)/12}" iyz="0.0"
-                 izz="${m*r*r/2}"
-                 meshfile="package://rover_desc_pkg/meshes/rover_wheel.dae"
-                 meshscale="1 1 1"/>
+    <xacro:m_link_mesh_cyl name="${fr}_${lr}_wheel"
+                           origin_rpy="0 0 0"
+                           origin_xyz="0 0 0"
+                           r="${r}"
+                           l="${h}"
+                           m="${m}"
+                           meshfile="package://rover_desc_pkg/meshes/rover_wheel.dae"
+                           meshscale="1 1 1"/>
 
     <gazebo reference="${fr}_${lr}_wheel">
-      <mu1>1.0</mu1>
-      <mu2>1.0</mu2>
-      <kp>10000000.0</kp>
-      <kd>1.0</kd>
-      <fdir1>0 1 0</fdir1>
-      <visual name="${fr}_${lr}_wheel_visual">
-        <material>Gazebo/Grey</material>
-      </visual>
+      <material>Gazebo/Black</material>
       <turnGravityOff>false</turnGravityOff>
     </gazebo>
 
-    <m_joint_cont name="${parent}__${fr}_${lr}_wheel"
-                  axis_xyz="0 1 0"
-                  origin_rpy="0 0 0"
-                  origin_xyz="${steer_x_origin_to_wheel_x_origin}
-                              ${steer_y_origin_to_wheel_y_origin}
-                              ${-steer_z_origin_to_wheel_z_origin}"
-                  parent="${parent}" child="${fr}_${lr}_wheel"
-                  limit_e="100" limit_v="100"/>
-
-    <!-- Transmission is important to link the joints and the controller -->
-    <!-- <transmission name="${fr}_${lr}_wheel_joint_trans">
-      <type>transmission_interface/SimpleTransmission</type>
-      <joint name="${fr}_${lr}_wheel_joint"/>
-      <actuator name="${fr}_${lr}_wheel_joint_motor">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
-        <mechanicalReduction>1</mechanicalReduction>
-      </actuator>
-    </transmission> -->
+    <xacro:m_joint_cont name="${parent}__${fr}_${lr}_wheel"
+                        axis_xyz="0 1 0"
+                        origin_rpy="0 0 0"
+                        origin_xyz="${steer_x_origin_to_wheel_x_origin}
+                                    ${steer_y_origin_to_wheel_y_origin}
+                                    ${-steer_z_origin_to_wheel_z_origin}"
+                        parent="${parent}" child="${fr}_${lr}_wheel"
+                        limit_e="1000" limit_v="25"
+                        damp="10.0" fric="1.0"/>
   </xacro:macro>
 </robot>

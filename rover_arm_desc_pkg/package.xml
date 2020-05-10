@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>rover_desc_pkg</name>
+  <name>rover_arm_desc_pkg</name>
   <version>0.0.0</version>
   <description>
-    The rover_desc_pkg package includes the modelling/description
-    (3D model, kinematics, mass and, etc) of the Rover.
+    The rover_arm_desc_pkg package includes the modelling/description
+    (3D model, kinematics, mass and, etc) of the arm of the rover.
   </description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
@@ -31,7 +31,9 @@
   <!-- Author tags are optional, multiple are allowed, one per tag -->
   <!-- Authors do not have to be maintainers, but could be -->
   <!-- Example: -->
-  <author email="s2007.ravi@gmail.com">Ravi Sharma</author>
+  <author email="s2007.ravi@gmail.com">
+    Ravi Sharma
+  </author>
 
 
   <buildtool_depend>catkin</buildtool_depend>
