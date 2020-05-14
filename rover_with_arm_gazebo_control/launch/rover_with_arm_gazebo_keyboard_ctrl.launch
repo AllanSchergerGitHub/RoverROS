@@ -16,8 +16,9 @@ Arguments:
   <arg name="cmd_timeout" default="0.5"/>
   <arg name="node_start_delay" default="5"/>
   <arg name="publish_frequency" default="30.0"/>
-  <arg name="linear_velocity" default="10.0"/>
-  <arg name="angular_velocity" default="1.3"/>
+  <arg name="max_speed" default="10.0"/>
+  <arg name="max_angle" default="1.3"/>
+  <arg name="topic_name" default="ackermann_cmd"/>
   <arg name="without_moveit" default="true"/>
 
   <!-- Launch the Gazebo simulation of the rover. -->
@@ -36,16 +37,6 @@ Arguments:
   </node>
 
   <!-- Keyboard control node. -->
-  <node name="rover_teleop" pkg="rover_gazebo_control" type="rover_teleop.py"
-        output="screen" ns="$(arg namespace)">
-    <param name="hz" value="$(arg publish_frequency)"/>
-    <param name="steps" value="10"/>
-    <param name="linear_velocity" value="$(arg linear_velocity)"/>
-    <param name="angular_velocity" value="$(arg angular_velocity)"/>
-  </node>
-
-  <!-- Node to convert /cmd_vel to /ackermann_command -->
-  <node name="cmd_vel_to_ackermann_drive" pkg="rover_gazebo_control"
-        type="cmd_vel_to_ackermann_drive.py" output="screen" ns="$(arg namespace)"
-        launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@'"/>
+  <node name="rover_keyop" pkg="rover_gazebo_control" type="rover_keyop.py"
+        output="screen" ns="$(arg namespace)" args="$(arg max_speed) $(arg max_angle) $(arg topic_name)"/>
 </launch>
