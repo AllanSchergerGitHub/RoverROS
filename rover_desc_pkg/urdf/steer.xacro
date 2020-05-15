@@ -14,7 +14,7 @@
 
     <xacro:if value="${fr == 'front'}">
       <xacro:property name="steer_x"
-                      value="${translateX * (world_x_origin_to_steer_x_origin + 0.063)}" scope="local"/>
+                      value="${translateX * (world_x_origin_to_steer_x_origin + 0.07913)}" scope="local"/>
     </xacro:if>
 
     <!-- Decide steer mesh file based on its location -->
