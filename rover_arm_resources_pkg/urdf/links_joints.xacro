@@ -127,13 +127,13 @@
       <collision>
         <origin rpy="${origin_rpy}" xyz="${origin_xyz}"/>
         <geometry>
-          <box size="${w} ${d} ${h}"/>
+          <box size="${d} ${w} ${h}"/>
         </geometry>
       </collision>
       <visual>
         <origin rpy="${origin_rpy}" xyz="${origin_xyz}"/>
         <geometry>
-          <box size="${w} ${d} ${h}"/>
+          <box size="${d} ${w} ${h}"/>
         </geometry>
         <xacro:material_clay_brown/>
       </visual>
