@@ -172,9 +172,6 @@ class _RoverCtrlr:
         self._inv_wheelbase = 1 / self._wheelbase   # Inverse of _wheelbase
         self._wheelbase_sqr = self._wheelbase ** 2
 
-        # Set wheelbase as a parameter.
-        rospy.set_param("wheelbase", float(self._wheelbase))
-
         # Publishers
         self._front_left_steer_cmd_pub = \
             _create_cmd_pub(list_ctrlrs, front_left_steer_ctrlr_name)
@@ -319,7 +316,9 @@ class _RoverCtrlr:
             self._left_theta = _get_steer_ang(math.atan(self._inv_wheelbase *
                                                         (center_y - self._joint_dist_div_2)))
             self._right_theta = _get_steer_ang(math.atan(self._inv_wheelbase *
-                                                         (center_y - self._joint_dist_div_2)))
+                                                         (center_y + self._joint_dist_div_2)))
+            rospy.loginfo("left_theta is: %f", self._left_theta)
+            rospy.loginfo("right_theta is: %f", self._right_theta)
 
         return steer_ang_changed, center_y
 
@@ -354,6 +353,11 @@ class _RoverCtrlr:
                 gain * left_dist * self._rear_left_inv_circ
             self._rear_right_ang_vel = \
                 gain * right_dist * self._rear_right_inv_circ
+
+            rospy.loginfo("front left wheel velocity: %f", self._front_left_ang_vel)
+            rospy.loginfo("front right wheel velocity: %f", self._front_right_ang_vel)
+            rospy.loginfo("rear left wheel velocity: %f", self._rear_left_ang_vel)
+            rospy.loginfo("rear right wheel velocity: %f", self._rear_right_ang_vel)
 
     _DEF_WHEEL_DIA = 1.0    # Default wheel diameter. Unit: meter.
     _DEF_CMD_TIMEOUT = 0.5  # Default command timeout. Unit: second.
