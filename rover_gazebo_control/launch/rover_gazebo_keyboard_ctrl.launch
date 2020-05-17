@@ -16,7 +16,7 @@ Arguments:
   <arg name="node_start_delay" default="5"/>
   <arg name="publish_frequency" default="30.0"/>
   <arg name="max_speed" default="10.0"/>
-  <arg name="max_angle" default="1.3"/>
+  <arg name="max_angle" default="1.0"/>
   <arg name="topic_name" default="ackermann_cmd"/>
 
   <!-- Launch the Gazebo simulation of the rover. -->
