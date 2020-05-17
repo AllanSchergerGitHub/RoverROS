@@ -83,7 +83,6 @@
     <disable_collisions link1="arm_footprint" link2="rear_right_steer" reason="Never" />
     <disable_collisions link1="arm_footprint" link2="rear_right_wheel" reason="Never" />
     <disable_collisions link1="arm_link_01" link2="arm_link_02" reason="Adjacent" />
-    <disable_collisions link1="arm_link_01" link2="arm_link_03" reason="Never" />
     <disable_collisions link1="arm_link_01" link2="arm_link_03a" reason="Never" />
     <disable_collisions link1="arm_link_01" link2="arm_link_04" reason="Never" />
     <disable_collisions link1="arm_link_01" link2="chassis_footprint" reason="Never" />
@@ -115,6 +114,7 @@
     <disable_collisions link1="arm_link_03" link2="chassis_link" reason="Never" />
     <disable_collisions link1="arm_link_03" link2="front_left_steer" reason="Never" />
     <disable_collisions link1="arm_link_03" link2="front_left_wheel" reason="Never" />
+    <disable_collisions link1="arm_link_03" link2="front_right_steer" reason="Never" />
     <disable_collisions link1="arm_link_03" link2="front_right_wheel" reason="Never" />
     <disable_collisions link1="arm_link_03" link2="rear_left_steer" reason="Never" />
     <disable_collisions link1="arm_link_03" link2="rear_left_wheel" reason="Never" />
@@ -122,11 +122,15 @@
     <disable_collisions link1="arm_link_03" link2="rear_right_wheel" reason="Never" />
     <disable_collisions link1="arm_link_03a" link2="arm_link_04" reason="Adjacent" />
     <disable_collisions link1="arm_link_03a" link2="chassis_footprint" reason="Never" />
+    <disable_collisions link1="arm_link_03a" link2="chassis_link" reason="Never" />
+    <disable_collisions link1="arm_link_03a" link2="front_left_steer" reason="Never" />
+    <disable_collisions link1="arm_link_03a" link2="front_left_wheel" reason="Never" />
     <disable_collisions link1="arm_link_03a" link2="rear_left_steer" reason="Never" />
     <disable_collisions link1="arm_link_03a" link2="rear_left_wheel" reason="Never" />
     <disable_collisions link1="arm_link_03a" link2="rear_right_steer" reason="Never" />
     <disable_collisions link1="arm_link_03a" link2="rear_right_wheel" reason="Never" />
     <disable_collisions link1="arm_link_04" link2="chassis_footprint" reason="Never" />
+    <disable_collisions link1="arm_link_04" link2="front_left_wheel" reason="Never" />
     <disable_collisions link1="arm_link_04" link2="rear_left_steer" reason="Never" />
     <disable_collisions link1="arm_link_04" link2="rear_left_wheel" reason="Never" />
     <disable_collisions link1="arm_link_04" link2="rear_right_steer" reason="Never" />
