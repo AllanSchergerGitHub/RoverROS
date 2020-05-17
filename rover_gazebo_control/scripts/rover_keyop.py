@@ -48,7 +48,7 @@ class RoverDriveKeyOp():
             max_steering_angle = float(args[1])
         else:
             max_speed = 0.2
-            max_steering_angle = 1.3
+            max_steering_angle = 1.0
 
         if len(args) > 2:
             cmd_topic = rospy.get_namespace() + args[2]
@@ -64,6 +64,7 @@ class RoverDriveKeyOp():
 
         self.speed = 0
         self.steering_angle = 0
+        self.steering_angle_vel = 0.0
 
         self.pub = rospy.Publisher(cmd_topic, AckermannDrive, queue_size=1)
         rospy.Timer(rospy.Duration(1.0/5.0), self.pub_callback, oneshot=False)
@@ -74,6 +75,7 @@ class RoverDriveKeyOp():
         ackermann_cmd_msg = AckermannDriveStamped()
         ackermann_cmd_msg.drive.speed = self.speed
         ackermann_cmd_msg.drive.steering_angle = self.steering_angle
+        ackermann_cmd_msg.drive.steering_angle_velocity = self.steering_angle_vel
         self.pub.publish(ackermann_cmd_msg.drive)
 
     def print_state(self):
