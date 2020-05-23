@@ -128,7 +128,7 @@ class RoverArmMove(object):
         #        rospy.logwarn("Gripper Value Not safe=" + str(position))
         # else:
         # Send through the connection the name of the object to be deleted by the service
-        result = self.joint_command_service(dynamixel_cmd_req)
+        result = self.joint_command_service(dynamixel_cmd)
         rospy.logwarn("move_one_joint went ok?=" + str(result))
 
     def get_joint_names(self):
