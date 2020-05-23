@@ -94,7 +94,7 @@ class RoverArmMove(object):
 
         rospy.logwarn("move_all_joints FINISHED")
 
-    def move_one_joint(self, joint_id, position, unit="rad"):
+    def move_one_joint(self, cmd, addr, value):
         """
         rossrv show dynamixel_workbench_msgs/DynamixelCommand
             string command
@@ -112,10 +112,10 @@ class RoverArmMove(object):
         :param units:
         :return:
         """
-        dynamixel_cmd_req = DynamixelCommand()
-        dynamixel_cmd_req.unit = unit
-        dynamixel_cmd_req.id = joint_id
-        dynamixel_cmd_req.goal_position = position
+        dynamixel_cmd = DynamixelCommand()
+        dynamixel_cmd.request.command = cmd
+        dynamixel_cmd.request.addr_name = addr
+        dynamixel_cmd.request.value = value
 
         # if joint_id == 7:
         #    rospy.logwarn("CHECKING Gripper Value is safe?")
@@ -241,6 +241,8 @@ def move_joints_test():
 
 
 if __name__ == "__main__":
-    rospy.init_node('move_openmanipulator_node', log_level=rospy.WARN)
+    rospy.init_node('rover_arm_move', log_level=rospy.WARN)
     # move_joints_test()
-    movement_sequence_test()
+    # movement_sequence_test()
+    controller = RoverArmMove()
+    controller.move_one_joint()
