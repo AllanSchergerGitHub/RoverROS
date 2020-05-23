@@ -14,6 +14,7 @@ Arguments:
   <arg name="namespace" default="arm"/>
 
   <!-- Dynamixel Parameters -->
+  <arg name="id" default="1"/>
   <arg name="device_name" default="/dev/ttyUSB0"/>
   <arg name="baud_rate" default="3000000"/>
   <arg name="latency_timer" default="1"/>
@@ -29,8 +30,6 @@ Arguments:
 
   <param name="scan_range"               value="$(arg scan_range)"/>
 
-  <param name="profile_velocity"         value="$(arg profile_velocity)"/>
-  <param name="profile_acceleration"     value="$(arg profile_acceleration)"/>
   <node name="rover_arm_control" pkg="rover_arm_dynamixel_control" type="rover_arm_move.py" required="true" output="screen"
         ns="$(arg namespace)"/>
 </launch>
